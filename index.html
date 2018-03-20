@@ -20,7 +20,7 @@
               </div>
               <div class="card-body row">
                 <div class="col-7">
-                    <input class="form-control">
+                    <input id="yourName" type="text" class="form-control" >
                 </div>
                 <div class="col-5">
                     <button id="joinHunt" class="btn btn-primary">Join the Hunt!</button>
@@ -85,14 +85,23 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- FIREBASE -->
+    <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCZm14n7D5AEnnVDJup3ptLIcijDlWSeZ0",
+        authDomain: "muc-project1.firebaseapp.com",
+        databaseURL: "https://muc-project1.firebaseio.com",
+        projectId: "muc-project1",
+        storageBucket: "muc-project1.appspot.com",
+        messagingSenderId: "686942721307"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <!-- Clarifai -->
     <script type="text/javascript" src="https://sdk.clarifai.com/js/clarifai-latest.js"></script>
     <script src="sandbox/clarifai/img-rec.js"></script>
-    <script>
-        $(document).ready(function(){
-          $('#joinHunt' ).on('click', function(){
-              $('#splash').slideToggle('slow');
-          });
-        });
-    </script>
+    <script src="./assets/js/app.js"></script>
   </body>
 </html>
