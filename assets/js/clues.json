@@ -1,0 +1,487 @@
+{
+    "games": {
+        "Balboa Park": {
+            "locations": {
+                "ALCAZAR GARDEN": {
+                    "coord": {
+                        "long": 32.731058,
+                        "lat": -117.151769
+                    },
+                    "items": {
+                        "Fountain": {
+                            "clue": "Piece of architecture which pours water into a basin or jets it into the air to for a decorative or dramatic effect.",
+                            "attrs": [
+                                "fountain",
+                                "water"
+                            ]
+                        },
+                        "Hedges": {
+                            "clue": "Boundary formed by closely growing bushes or shrubs",
+                            "attrs": [
+                                "hedge",
+                                "green"
+                            ]
+                        }
+                    }
+                },
+                "CALIFORNIA TOWER": {
+                    "coord": {
+                        "long": 32.731058,
+                        "lat": -117.152218
+                    },
+                    "items": {
+                        "tower": {
+                            "clue": "Tall narrow building, either freestanding or forming part of a building such as a church or castle.",
+                            "attrs": [
+                                "tower",
+                                "tall"
+                            ]
+                        },
+                        "arch": {
+                            "clue": "a curved symmetrical structure spanning an opening and typically supporting the weight of...",
+                            "attrs": [
+                                "arch",
+                                "curved"
+                            ]
+                        },
+                        "landmark": {
+                            "clue": "An object or feature of a landscape or town that is easily seen and recognized from a distance, especially one that enables someone to establish their location.",
+                            "attrs": [
+                                "landmark"
+                            ]
+                        }
+                    }
+                },
+                "FLEET SCIENCE CENTER": {
+                    "coord": {
+                        "long": 32.730788,
+                        "lat": -117.146964
+                    },
+                    "items": {
+                        "legos": {
+                            "clue": "Consists of colorful interlocking plastic bricks.",
+                            "attrs": [
+                                "legos",
+                                "bricks"
+                            ]
+                        },
+                        "gears": {
+                            "clue": "a curved symmetrical structure spanning an opening and typically supporting the weight of...",
+                            "attrs": [
+                                "gears",
+                                "round"
+                            ]
+                        },
+                        "kid city": {
+                            "clue": "A large town for kids.",
+                            "attrs": [
+                                "children",
+                                "city"
+                            ]
+                        },
+                        "cow": {
+                            "clue": "A fully grown female animal of a domesticated breed of ox, kept to produce milk or beef.",
+                            "attrs": [
+                                "cow",
+                                "milk"
+                            ]
+                        }
+                    }
+                },
+                "INTERNATIONAL HOUSES": {
+                    "coord": {
+                        "long": 32.729153,
+                        "lat": -117.152218
+                    },
+                    "items": {
+                        "cottages": {
+                            "clue": "The sum of attitudes, customs, and beliefs that distinguishes one group of people from another.",
+                            "attrs": [
+                                "cottages",
+                                "building",
+                                "house"
+                            ]
+                        },
+                        "flag": {
+                            "clue": "A piece of cloth attachable to a pole or rope and used as the symbol or emblem of a country.",
+                            "attrs": [
+                                "flag",
+                                "pole"
+                            ]
+                        }
+                    }
+                },
+                "SE FRIENDSHIP GARDEN": {
+                    "coord": {
+                        "long": 32.730129,
+                        "lat": -117.149958
+                    },
+                    "items": {
+                        "fish": {
+                            "clue": "Likely found in outdoor ponds and water gardens.",
+                            "attrs": [
+                                "fish",
+                                "pond",
+                                "water"
+                            ]
+                        },
+                        "stream": {
+                            "clue": "A body of water with surface water flowing within the bed and banks of a channel.",
+                            "attrs": [
+                                "stream",
+                                "water"
+                            ]
+                        },
+                        "waterfall": {
+                            "clue": "A place where water flows over a vertical drop or a series of steep drops.",
+                            "attrs": [
+                                "waterfall",
+                                "water"
+                            ]
+                        }
+                    }
+                },
+                "LILY POND": {
+                    "coord": {
+                        "long": 32.731978,
+                        "lat": -117.149235
+                    },
+                    "items": {
+                        "lily pad": {
+                            "clue": "A round, floating leaf.",
+                            "attrs": [
+                                "lily",
+                                "leaf",
+                                "floating"
+                            ]
+                        },
+                        "bird": {
+                            "clue": "A warm-blooded egg-laying vertebrate distinguished by the possession of feathers, wings, and a beak and (typically) by being able to fly.",
+                            "attrs": [
+                                "bird",
+                                "wings"
+                            ]
+                        },
+                        "pond": {
+                            "clue": "A body of standing water, either natural or artificial, that is usually smaller than a lake.",
+                            "attrs": [
+                                "pond",
+                                "water"
+                            ]
+                        }
+                    }
+                },
+                "SAN DIEGO AIR & SPACE MUSEUM": {
+                    "coord": {
+                        "long": 32.726272,
+                        "lat": -117.154293
+                    },
+                    "items": {
+                        "airplane": {
+                            "clue": "A powered flying vehicle with fixed wings and a weight greater than that of the air it displaces. ",
+                            "attrs": [
+                                "airplane",
+                                "propeller",
+                                "wings"
+                            ]
+                        },
+                        "jet": {
+                            "clue": "An aircraft powered by one or more jet engines.",
+                            "attrs": [
+                                "jet",
+                                "aircraft"
+                            ]
+                        },
+                        "ship": {
+                            "clue": "A vessel larger than a boat for transporting people or goods by sea.",
+                            "attrs": [
+                                "ship",
+                                "boat"
+                            ]
+                        },
+                        "battleship": {
+                            "clue": "A heavy warship of a type built chiefly in the late 19th and early 20th centuries, with extensive armor and large-caliber guns.",
+                            "attrs": [
+                                "warship",
+                                "guns"
+                            ]
+                        }
+                    }
+                },
+                "SAN DIEGO AUTOMOTIVE MUSEUM": {
+                    "coord": {
+                        "long": 32.727453,
+                        "lat": -117.15363
+                    },
+                    "items": {
+                        "antique cars": {
+                            "clue": "A wheeled motor vehicle used for transportation.",
+                            "attrs": [
+                                "cars",
+                                "antique",
+                                "wheels"
+                            ]
+                        },
+                        "helmet": {
+                            "clue": "A form of protective gear worn to protect the head from injuries.",
+                            "attrs": [
+                                "helmet",
+                                "head"
+                            ]
+                        },
+                        "bicycle": {
+                            "clue": "A vehicle composed of two wheels held in a frame one behind the other, propelled by pedals and steered with handlebars attached to the front wheel.",
+                            "attrs": [
+                                "bicycle",
+                                "handlebars"
+                            ]
+                        },
+                        "motorcycle": {
+                            "clue": "A two or three-wheeled motor vehicle.",
+                            "attrs": [
+                                "motorcycle",
+                                "wheels"
+                            ]
+                        },
+                        "car show": {
+                            "clue": "A public exhibition of current automobile models, debuts, concept cars, or out-of-production classics.",
+                            "attrs": [
+                                "cars",
+                                "automobile"
+                            ]
+                        }
+                    }
+                },
+                "SAN DIEGO MODEL RAILROAD MUSEUM": {
+                    "coord": {
+                        "long": 32.731132,
+                        "lat": -117.148611
+                    },
+                    "items": {
+                        "train": {
+                            "clue": "A form of rail transport consisting of a series of connected vehicles.",
+                            "attrs": [
+                                "train",
+                                "track"
+                            ]
+                        },
+                        "town": {
+                            "clue": "larger than villages but smaller than cities.",
+                            "attrs": [
+                                "town",
+                                "houses"
+                            ]
+                        }
+                    }
+                },
+                "SAN DIEGO MUSEUM OF ART": {
+                    "coord": {
+                        "long": 32.732152,
+                        "lat": -117.150431
+                    },
+                    "items": {
+                        "painting": {
+                            "clue": "often hung on the wall for display",
+                            "attrs": [
+                                "painting",
+                                "wall"
+                            ]
+                        },
+                        "display case": {
+                            "clue": "a cabinet with one or often more transparent surfaces, used to display objects for viewing.",
+                            "attrs": [
+                                "case",
+                                "display"
+                            ]
+                        }
+                    }
+                },
+                "SAN DIEGO NATURAL HISTORY MUSEUM": {
+                    "coord": {
+                        "long": 32.732103,
+                        "lat": -117.147457
+                    },
+                    "items": {
+                        "shark": {
+                            "clue": "often hung on the wall for display",
+                            "attrs": [
+                                "painting",
+                                "wall"
+                            ]
+                        },
+                        "dinosaur bones": {
+                            "clue": "preserved remains of a reptile that first appeared during the Triassic period, between 243 and 231 million years ago.",
+                            "attrs": [
+                                "dinosaur",
+                                "bones"
+                            ]
+                        },
+                        "dinosaur eggs": {
+                            "clue": "organic vessels in which a dinosaur embryo develops.",
+                            "attrs": [
+                                "eggs",
+                                "shell"
+                            ]
+                        }
+                    }
+                },
+                "SCULPTURE GARDEN": {
+                    "coord": {
+                        "long": 32.731787,
+                        "lat": -117.151388
+                    },
+                    "items": {
+                        "sculpture": {
+                            "clue": "The art of making two or three dimensional representative or abstract forms.",
+                            "attrs": [
+                                "sculpture",
+                                "abstract"
+                            ]
+                        }
+                    }
+                },
+                "VETERANS MUSEUM": {
+                    "coord": {
+                        "long": 32.725806,
+                        "lat": -117.148788
+                    },
+                    "items": {
+                        "uniform": {
+                            "clue": "distinctive clothing worn by members of the same organization.",
+                            "attrs": [
+                                "uniform",
+                                "clothing"
+                            ]
+                        },
+                        "weapons": {
+                            "clue": "thing designed or used for inflicting bodily harm or physical damage.",
+                            "attrs": [
+                                "weapon",
+                                "gun"
+                            ]
+                        },
+                        "sandbags": {
+                            "clue": "filled with sand, typically used for defensive purposes or for protection from flooding",
+                            "attrs": [
+                                "sandbag",
+                                "bag"
+                            ]
+                        },
+                        "ball": {
+                            "clue": "round object used in games, often hit, kicked, or thrown by players.",
+                            "attrs": [
+                                "ball",
+                                "round"
+                            ]
+                        },
+                        "frisbee": {
+                            "clue": "concave plastic disk designed for skimming through the air as an outdoor game or amusement",
+                            "attrs": [
+                                "frisbee",
+                                "disk"
+                            ]
+                        },
+                        "dog": {
+                            "clue": "man’s best friend",
+                            "attrs": [
+                                "dog",
+                                "canine"
+                            ]
+                        },
+                        "keys": {
+                            "clue": "mall metal instruments specially cut to fit into a lock",
+                            "attrs": [
+                                "keys",
+                                "lock"
+                            ]
+                        },
+                        "book": {
+                            "clue": "series of pages assembled for easy portability and reading.",
+                            "attrs": [
+                                "book",
+                                "pages"
+                            ]
+                        },
+                        "flower": {
+                            "clue": "sometimes known as a bloom or blossom",
+                            "attrs": [
+                                "flower",
+                                "daisy"
+                            ]
+                        },
+                        "bridge": {
+                            "clue": "structure built to span physical obstacles without closing the way underneath for the purpose of providing passage over the obstacle.",
+                            "attrs": [
+                                "bridge",
+                                "road"
+                            ]
+                        },
+                        "backpack": {
+                            "clue": "carried on one's back",
+                            "attrs": [
+                                "backpack",
+                                "pack"
+                            ]
+                        },
+                        "purse": {
+                            "clue": "used to carry everyday personal items",
+                            "attrs": [
+                                "purse",
+                                "handle"
+                            ]
+                        },
+                        "blanket": {
+                            "clue": "large piece of material used for creating a picnic",
+                            "attrs": [
+                                "blanket",
+                                "cloth"
+                            ]
+                        },
+                        "bottle": {
+                            "clue": "used for storing liquids",
+                            "attrs": [
+                                "bottle",
+                                "liquid"
+                            ]
+                        },
+                        "kite": {
+                            "clue": "flown in the wind at the end of a long string",
+                            "attrs": [
+                                "kite",
+                                "string"
+                            ]
+                        },
+                        "umbrella": {
+                            "clue": "used as protection against rain or sometimes sun.",
+                            "attrs": [
+                                "umbrella",
+                                "rain"
+                            ]
+                        },
+                        "football": {
+                            "clue": "ball made of pigskin",
+                            "attrs": [
+                                "football",
+                                "ball"
+                            ]
+                        },
+                        "carousel": {
+                            "clue": "a merry-go-round.",
+                            "attrs": [
+                                "merry-go-round",
+                                "carousel"
+                            ]
+                        },
+                        "balloons": {
+                            "clue": "flexible bag that can be inflated with a fluid, such as helium, hydrogen, nitrous oxide, oxygen, air or water.",
+                            "attrs": [
+                                "balloons",
+                                "ball"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
