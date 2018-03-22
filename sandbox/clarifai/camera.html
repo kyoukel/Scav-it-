@@ -13,11 +13,11 @@
       
         <div id="container">
 
-                <h1><a href="../../index.html" title="simpl.info home page">simpl.info</a> MediaStreamTrack.getSources</h1>
+                <h1>MediaStreamTrack.getSources</h1>
               
-                <div class="select">
+                <!-- <div class="select">
                   <label for="audioSource">Audio source: </label><select id="audioSource"></select>
-                </div>
+                </div> -->
               
                 <div class="select">
                   <label for="videoSource">Video source: </label><select id="videoSource"></select>
@@ -62,7 +62,7 @@
         'use strict';
 
         var videoElement = document.querySelector('video');
-        var audioSelect = document.querySelector('select#audioSource');
+        // var audioSelect = document.querySelector('select#audioSource');
         var videoSelect = document.querySelector('select#videoSource');
 
         const button = document.querySelector('#screenshot-button');
@@ -71,10 +71,9 @@
 
         const canvas = document.createElement('canvas');
 
-        navigator.mediaDevices.enumerateDevices()
-        .then(gotDevices).then(getStream).catch(handleError);
+        navigator.mediaDevices.enumerateDevices().then(gotDevices).then(getStream).catch(handleError);
 
-        audioSelect.onchange = getStream;
+        // audioSelect.onchange = getStream;
         videoSelect.onchange = getStream;
 
         function gotDevices(deviceInfos) {
@@ -82,11 +81,12 @@
                 var deviceInfo = deviceInfos[i];
                 var option = document.createElement('option');
                 option.value = deviceInfo.deviceId;
-                if (deviceInfo.kind === 'audioinput') {
-                    option.text = deviceInfo.label ||
-                    'microphone ' + (audioSelect.length + 1);
-                    audioSelect.appendChild(option);
-                } else if (deviceInfo.kind === 'videoinput') {
+                // if (deviceInfo.kind === 'audioinput') {
+                //     option.text = deviceInfo.label ||
+                //     'microphone ' + (audioSelect.length + 1);
+                //     audioSelect.appendChild(option);
+                // } else 
+                if (deviceInfo.kind === 'videoinput') {
                     option.text = deviceInfo.label || 'camera ' +
                         (videoSelect.length + 1);
                     videoSelect.appendChild(option);
@@ -104,9 +104,9 @@
             }
 
             var constraints = {
-                audio: {
-                    deviceId: {exact: audioSelect.value}
-                },
+                // audio: {
+                //     deviceId: {exact: audioSelect.value}
+                // },
                 video: {
                     deviceId: {exact: videoSelect.value}
                 }
