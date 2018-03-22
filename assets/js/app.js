@@ -1,3 +1,19 @@
+/* Set the width of the offcanvas-side-navigation to 250px and the left margin of the page content to 250px */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("mainContent").style.marginLeft = "250px";
+    // and add a black background color to body */
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("mainContent").style.marginLeft = "0";
+    // and the background color of body to white */
+    document.body.style.backgroundColor = "white";
+}    
+
 var database = firebase.database();
 
 var MUC = {
@@ -39,5 +55,6 @@ var MUC = {
         // give the person a point ladies and gentleman
     // write the playerboard
 }
+
 
 MUC.init();
