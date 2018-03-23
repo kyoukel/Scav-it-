@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+
+<body>
+        <h1>The Prado Scavenger Hunt</h1>
+
+<div id="map" style="width:800px;height:500px"></div>
+
+<script>
+function myMap() {
+    var myCenter = new google.maps.LatLng(32.731744, -117.150446); // Plaza de Panama
+    var mapCanvas = document.getElementById("map");
+    var mapOptions = {center: myCenter, zoom: 17};
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+
+    var marker = new google.maps.Marker({position:myCenter});
+    marker.setMap(map);
+
+
+    var infowindow = new google.maps.InfoWindow({
+        content: "Plaza de Panama"
+    });
+    infowindow.open(map,marker);
+
+    // var mapOptions = {
+    //     center: new google.maps.LatLng(
+    //         32.731744, -117.150446),
+    //         zoom: 17,
+    //         mapTypeId: google.maps.MapTypeId.ROADMAP
+    //     }
+    // var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBT18_kQE2Dq1xQOmNudZxovbRGXkUZ7K8&amp;callback=myMap"></script>
+
+<!--
+Read more at:
+https://www.w3schools.com/graphics/google_maps_basic.asp
+https://www.w3schools.com/html/html_googlemaps.asp
+https://developers.google.com/maps/documentation/javascript/reference/3/
+-->
+
+</body>
+</html>
+
