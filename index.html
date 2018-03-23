@@ -37,15 +37,8 @@
 
           <!-- Fixed navbar -->
       <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">About Us</a>
-        <a href="#">Meet Team MUC</a>
-        <a href="#">Help</a>
-        <a href="#">Contact</a>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" id="search">Search</button>
-        </form>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>                
+        <a href="#">Help | Q/A</a>
       </div>
     
           <!-- Use any element to open the sidenav--> 
@@ -56,37 +49,53 @@
       <nav class="navbar sticky-top navbar-dark bg-dark" id="stickyNavTop">
           <span style="color:#007bff; font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
           <!-- <a class="navbar-brand" href="#">Sticky top</a> -->
-        <div class="d-flex align-items-end"> 
+        <!--UNDECIDED IF WE WANT LINKS AT THE TOP AT THIS TIME-->         
+        <!-- <div class="d-flex align-items-end"> 
           <a class="nav-link" href="#">Home</a>
           <a class="nav-link" href="#">Link</a>
           <a class="nav-link" href="#">Link</a>
-        </div>
+        </div> -->
       </nav>
 
     <div class="jumbotron">
-      <span>This is where the compass/map/whatever goes</span>
+      <span class="sr-only">This is where the compass/map/whatever goes</span>     
+      <div id="map" style="width:800px;height:500px"></div>
     </div>
 
     <!-- DON'T CREATE REPEATING ELEMENTS THAT WILL BE CREATED DYNAMICALLY BY SCAV LIST -->
     <main role="main" class="container">
-      <div class="row">
+      <div class="rowItem">
         <ul class="list-group scav-list w-100 text-center">
-          <li class="list-group-item scav-item">
+          <li class="list-group-item scav-item bg-dark">
             <div class="row scav-item-inner">
-                <div class="col-2 left-widget">
-                  <i class=""></i>
+                <div class="col-4 left-widget">
+                  <!-- <i class="" style="color: white"; font-family="Lato", sans-serif></i> -->
+                  <image src="./assets/images/stream.jpeg" alt="stream"></image>
                 </div>
                 <div class="col-6 scav-clue">
-                  <span>Here is information about the item</span>
+                  <!-- <span style="color: #f1f1f1; font-size: 20px;"></span>Here is information about the item</span> -->
+                  <form method=""> 
+                    <span class="sr-only">submitted/not submitted (dot?)</span>
+                    <p style="color: #f1f1f1" id="clue"> "body of water with surface water flowing within the bed and banks of a channel" | Japanese Friendship Garden</p>
+                    <input type="file" style="background-color:dodgerblue; color: white" name="fileupload" value="fileupload" id="fileupload"> 
+                    <input type="submit" value="submit" id="submit"> 
+                    <input type="reset" id="reset">
+                  </form>
                 </div>
-                <div class="col-4 right-widget">
-                  <button class="btn btn-primary">Scav It!</button>
+
+                <div class="col-2 right-widget">
+                  <button class="btn btn-primary" id="scavIt">Scav It!</button>
                 </div>
             </div>
           </li>
         </ul>
       </div>
     </main>
+
+    <nav class="navbar fixed-bottom navbar-dark bg-dark p-3" id="fixedFooter">
+      <a href="#" id="aboutUs">About Us</a>
+    </nav>
+
 
   </div>
 
@@ -123,5 +132,28 @@
     <script type="text/javascript" src="https://sdk.clarifai.com/js/clarifai-latest.js"></script>
     <script src="sandbox/clarifai/img-rec.js"></script>
     <script src="./assets/js/app.js"></script>
+
+<script>
+    function myMap() {
+        var myCenter = new google.maps.LatLng(32.731744, -117.150446); // Plaza de Panama
+        var mapCanvas = document.getElementById("map");
+        var mapOptions = {center: myCenter, zoom: 17};
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+        var marker = new google.maps.Marker({position:myCenter});
+        marker.setMap(map);
+        var infowindow = new google.maps.InfoWindow({
+            content: "Plaza de Panama"
+        });
+        infowindow.open(map,marker);
+        // var mapOptions = {
+        //     center: new google.maps.LatLng(
+        //         32.731744, -117.150446),
+        //         zoom: 17,
+        //         mapTypeId: google.maps.MapTypeId.ROADMAP
+        //     }
+        // var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    }
+</script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBT18_kQE2Dq1xQOmNudZxovbRGXkUZ7K8&amp;callback=myMap"></script>
   </body>
 </html>

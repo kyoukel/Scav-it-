@@ -40,6 +40,25 @@ var MUC = {
 
         $('#splash').slideToggle('slow');
         
+    },
+    ClarifaiImg: function(img64){// this calls the clarfai app and resturns the list of predictors
+        var app = new Clarifai.App({
+            apiKey: 'de1dff9bec7a40438eacef4b649661b1'
+        });
+
+        var predictors = app.models.predict(Clarifai.GENERAL_MODEL, img64 ).then(
+            function(response){
+                // do stuff w/response
+                console.log(response.outputs[0].data.concepts);
+                return response.outputs[0].data.concepts;
+            },
+            function(err){
+                // there was an error!
+                console.log(err);
+            }
+        )
+
+        return predictors;
     }
     // add player to firebase
     // player added? get the playerboard
