@@ -17,15 +17,11 @@ function closeNav() {
 var database = firebase.database();
 
 var MUC = {
-<<<<<<< HEAD
-    init: function() {
-=======
     formData: {
         location: {},
         file: ''
     },
     init: function(){
->>>>>>> 81fe7838cd1e683f6e028d642b26b41566e810e9
         // When user clicks add player button
         $('#joinHunt').on('click', function(event) {
             event.preventDefault();
@@ -54,12 +50,6 @@ var MUC = {
     makePlayer: function(playerName) {
         // debugger;
         // Set player key, either playerA or player1
-<<<<<<< HEAD
-
-
-=======
-        
->>>>>>> 81fe7838cd1e683f6e028d642b26b41566e810e9
         var playerKey = firebase.database().ref('players/').push({
             name: playerName
         });
@@ -88,26 +78,6 @@ var MUC = {
 
         return predictors;
     },
-<<<<<<< HEAD
-    getLocation: function() {
-            if (navigator.geolocation) {
-                return navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                console.log("ERROR: Geolocation is not supported by this browser.");
-                return false;
-            }
-        }
-        // add player to firebase
-        // player added? get the playerboard
-        // player scored? get the playerboard
-        // get scav clues
-        // write scav clues (where are scav clues?)
-        // get the playerboard
-        // do navigation things
-        // where is the player?
-        // where is the point?
-        // submit the image to clarifai
-=======
     getLocation: function(){
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -141,8 +111,7 @@ var MUC = {
         }
         
     },
-    makePosition: function(position){
-        
+    makePosition: function(position){        
             MUC.formData.location = {
                 lat: position.coords.latitude,
                 long: position.coords.longitude
@@ -162,13 +131,11 @@ var MUC = {
     // where is the player?
     // where is the point?
     // submit the image to clarifai
->>>>>>> 81fe7838cd1e683f6e028d642b26b41566e810e9
-        // determine if response from clarifai is good?
-        // give the person a point ladies and gentleman
-        // write the playerboard
-
-
+    // determine if response from clarifai is good?
+    // give the person a point ladies and gentleman
+    // write the playerboard
 }
+MUC.init();
 
 
 var citymap = {
@@ -328,4 +295,3 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: Your browser doesn\'t support geolocation.');
     infoWindow.open(map);
 }
-MUC.init();
