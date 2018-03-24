@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <title>Title</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -13,9 +14,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="./assets/css/style.css">
-  </head>
-  <body>
-      <!-- <div id="splash">
+</head>
+
+<body>
+    <!-- <div id="splash">
         <div class="container">
           <div class="row">
             <div class="card welcome-form">
@@ -35,93 +37,101 @@
         </div>
       </div> -->
 
-          <!-- Fixed navbar -->
-      <div id="mySidenav" class="sidenav">
+    <!-- Fixed navbar -->
+    <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="#">About Us</a>
         <a href="#">Meet Team MUC</a>
         <a href="#">Help</a>
         <a href="#">Contact</a>
         <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" id="search">Search</button>
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" id="search">Search</button>
         </form>
-      </div>
-    
-          <!-- Use any element to open the sidenav--> 
-          <!--Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
-  <div id="mainContent">
-      
-    
-      <nav class="navbar sticky-top navbar-dark bg-dark" id="stickyNavTop">
-          <span style="color:#007bff; font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-          <!-- <a class="navbar-brand" href="#">Sticky top</a> -->
-        <div class="d-flex align-items-end"> 
-          <a class="nav-link" href="#">Home</a>
-          <a class="nav-link" href="#">Link</a>
-          <a class="nav-link" href="#">Link</a>
-        </div>
-      </nav>
-
-    <div class="jumbotron">
-      <span>This is where the compass/map/whatever goes</span>
     </div>
 
-    <!-- DON'T CREATE REPEATING ELEMENTS THAT WILL BE CREATED DYNAMICALLY BY SCAV LIST -->
-    <main role="main" class="container">
-      <div class="row">
-        <ul class="list-group scav-list w-100 text-center">
-          <li class="list-group-item scav-item">
-            <div class="row scav-item-inner">
-                <div class="col-2 left-widget">
-                  <i class=""></i>
-                </div>
-                <div class="col-6 scav-clue">
-                  <span>Here is information about the item</span>
-                </div>
-                <div class="col-4 right-widget">
-                  <button class="btn btn-primary">Scav It!</button>
-                </div>
+    <!-- Use any element to open the sidenav-->
+    <!--Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+    <div id="mainContent">
+
+
+        <nav class="navbar sticky-top navbar-dark bg-dark" id="stickyNavTop">
+            <span style="color:#007bff; font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+            <!-- <a class="navbar-brand" href="#">Sticky top</a> -->
+            <div class="d-flex align-items-end">
+                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Link</a>
             </div>
-          </li>
-        </ul>
-      </div>
-    </main>
+        </nav>
 
-  </div>
+        <!-- MAP -->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-.5"></div>
+                <div class="col-sm-10">
+                    <!-- <div class="jumbotron"> -->
+                    <div id="map"></div>
+                    <!-- </div> -->
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+        </div>
 
-    
+        <!-- DON'T CREATE REPEATING ELEMENTS THAT WILL BE CREATED DYNAMICALLY BY SCAV LIST -->
+        <main role="main" class="container">
+            <div class="row">
+                <ul class="list-group scav-list w-100 text-center">
+                    <li class="list-group-item scav-item">
+                        <div class="row scav-item-inner">
+                            <div class="col-2 left-widget">
+                                <i class=""></i>
+                            </div>
+                            <div class="col-6 scav-clue">
+                                <span>Here is information about the item</span>
+                            </div>
+                            <div class="col-4 right-widget">
+                                <button class="btn btn-primary">Scav It!</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </main>
 
+    </div>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQwL81AM3LwGU05HGzI3hf_-lUJa4ed6k&"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+
     <!-- FIREBASE -->
     <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
 
     <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyCZm14n7D5AEnnVDJup3ptLIcijDlWSeZ0",
-        authDomain: "muc-project1.firebaseapp.com",
-        databaseURL: "https://muc-project1.firebaseio.com",
-        projectId: "muc-project1",
-        storageBucket: "muc-project1.appspot.com",
-        messagingSenderId: "686942721307"
-      };
-      firebase.initializeApp(config);
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCZm14n7D5AEnnVDJup3ptLIcijDlWSeZ0",
+            authDomain: "muc-project1.firebaseapp.com",
+            databaseURL: "https://muc-project1.firebaseio.com",
+            projectId: "muc-project1",
+            storageBucket: "muc-project1.appspot.com",
+            messagingSenderId: "686942721307"
+        };
+        firebase.initializeApp(config);
     </script>
-    
     <!-- Clarifai -->
     <script type="text/javascript" src="https://sdk.clarifai.com/js/clarifai-latest.js"></script>
     <script src="sandbox/clarifai/img-rec.js"></script>
     <script src="./assets/js/app.js"></script>
-  </body>
+
+</body>
+
 </html>
