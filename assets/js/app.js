@@ -17,6 +17,10 @@ function closeNav() {
 var database = firebase.database();
 
 var MUC = {
+    formData: {
+        location: {},
+        file: ''
+    },
     init: function(){
         // When user clicks add player button
         $('#joinHunt').on('click', function(event){
@@ -26,11 +30,26 @@ var MUC = {
             name.val('');
             $('#splash').slideUp('slow');
         });
+
+        // get geo every minute
+        var getGeoData = setInterval(function(){
+            if (navigator.geolocation) {
+                // alert('test');
+                navigator.geolocation.getCurrentPosition(MUC.makePosition, MUC.posError);
+            }
+        }, 30000);
+        
+        // get geo once
+        navigator.geolocation.getCurrentPosition(MUC.makePosition);
+
+        $('#userImage').on('change', function(){
+            MUC.makeData();
+            MUC.submitForm(MUC.formData);
+        });
     },
     makePlayer: function( playerName ){
         // debugger;
         // Set player key, either playerA or player1
-        
         
         var playerKey = firebase.database().ref('players/').push({
             name: playerName
@@ -62,11 +81,47 @@ var MUC = {
     },
     getLocation: function(){
         if (navigator.geolocation) {
-            return navigator.geolocation.getCurrentPosition(showPosition);
+            navigator.geolocation.getCurrentPosition(showPosition);
         } else {
             console.log("ERROR: Geolocation is not supported by this browser.");
             return false;
         }
+    },
+    submitForm: function(formData){
+        console.log(formData);
+    },
+    makeData: function() {
+        
+        // set the location    
+        MUC.formData.location = {
+
+        };
+        var input = document.getElementById('userImage');
+
+        if (input.files && input.files[0]) {
+            var file = input.files[0];
+            var file64 = '';
+            var reader = new FileReader();
+            // console.log(reader.readAsDataURL(file));
+            reader.readAsDataURL(file);
+
+            reader.onload = function (e) {
+                MUC.formData.file = e.target.result;
+                // console.log(e.target.result);
+            }
+        }
+        
+    },
+    makePosition: function(position){
+        
+            MUC.formData.location = {
+                lat: position.coords.latitude,
+                long: position.coords.longitude
+            };
+        
+    },
+    posError: function(err){
+        console.warn(`ERROR(${err.code}): ${err.message}`);
     }
     // add player to firebase
     // player added? get the playerboard
