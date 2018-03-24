@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+var database = { 
+  "games" : {
+    "game0" : {
+        "name" : "Balboa Park",
+        "lat" : 32,
+        "long" : -117,
+        "places" : {
+            "place0" : {
+            "attr" : [ "fountain", "water" ],
+            "clue" : "Piece of architecture which pours water into a basin or jets it into the air to for a decorative or dramatic effect.",
+            "lat" : -117.151769,
+            "long" : 32.731058,
+            "name" : "Alazar Garden"
+            },
+            "place1" : {
+            "attr" : [ "arch", "curved" ],
+            "clue" : "a curved symmetrical structure spanning an opening and typically supporting the weight of...",
+            "lat" : -117.152218,
+            "long" : 32.731058,
+            "name" : "California Tower"
+            },
+            "place2" : {
+            "attrs" : [ "cow", "milk" ],
+            "clue" : "A fully grown female animal of a domesticated breed of ox, kept to produce milk or beef.",
+            "lat" : -117.146964,
+            "long" : 32.730788,
+            "name" : "Fleet Science Center"
+            },
+            "place3" : {
+            "attrs" : [ "cottages", "building" ],
+            "clue" : "The sum of attitudes, customs, and beliefs that distinguishes one group of people from another.",
+            "lat" : -117.152218,
+            "long" : 32.729153,
+            "name" : "International Houses"
+            }
+        },
+
+    },
+    "game1" : {
+        "name" : "Colors",
+        "lat" : 32.734148,
+        "long" : -117.144553,
+      "places" : {
+        "place0" : {
+          "attr" : "blue",
+          "clue" : "something that is blue",
+          "lat" : 32.734148,
+          "long" : -117.144553,
+          "name" : "Balboa Park - South"
+        },
+        "place1" : {
+          "attr" : "purple",
+          "clue" : "something that is purple",
+          "lat" : 32.734148,
+          "long" : -117.144553,
+          "name" : "Balboa Park - North"
+        }
+      },
+    }
+  },
+  "players" : {
+    "-L8AQuoN9GdOWbyp9L-d" : {
+      "name" : "Todd"
+    }
+  }
+}
+
+    // number of attributes for location
+    var gameName = database.games.game0.name
+    var gameLocation = [database.games.game0.lat, database.games.game0.long]
+    console.log(gameName, database.games.game0.lat, database.games.game0.long)
+
+    // Iterate through names of places
+     for (let key in database.games.game0.places) {
+         console.log(key, "Name:", database.games.game0.places[key].name);
+         console.log(key, "Clue:", database.games.game0.places[key].clue);
+         console.log(key, "Clue:", database.games.game0.places[key].lat);
+         console.log(key, "Clue:", database.games.game0.places[key].long);
+     }
+
+
+
+//
+// https://www.geodatasource.com/developers/javascript
+//
+function distance(lat1, lon1, lat2, lon2) {
+    console.log(lat1, lon1, lat2, lon2)
+	var radlat1 = Math.PI * lat1/180
+	var radlat2 = Math.PI * lat2/180
+	var theta = lon1-lon2
+	var radtheta = Math.PI * theta/180
+	var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+	dist = Math.acos(dist)
+	dist = dist * 180/Math.PI
+	dist = dist * 60 * 1.1515
+    dist = dist * 5280 // convert miles to feet
+    dist = precisionRound(dist, 0)
+	return dist
+}
+
+function precisionRound(number, precision) {
+  var factor = Math.pow(10, precision);
+  return Math.round(number * factor) / factor;
+}
+
+    var geo = {
+        /**
+         * Calculate the bearing between two positions as a value from 0-360
+         *
+         * @param lat1 - The latitude of the first position
+         * @param lng1 - The longitude of the first position
+         * @param lat2 - The latitude of the second position
+         * @param lng2 - The longitude of the second position
+         *
+         * @return int - The bearing between 0 and 360
+         */
+        bearing : function (lat1,lng1,lat2,lng2) {
+            var dLon = this._toRad(lng2-lng1);
+            var y = Math.sin(dLon) * Math.cos(this._toRad(lat2));
+            var x = Math.cos(this._toRad(lat1))*Math.sin(this._toRad(lat2)) - Math.sin(this._toRad(lat1))*Math.cos(this._toRad(lat2))*Math.cos(dLon);
+            var brng = this._toDeg(Math.atan2(y, x));
+            return ((brng + 360) % 360);
+        },
+
+       /**
+         * Since not all browsers implement this we have our own utility that will
+         * convert from degrees into radians
+         *
+         * @param deg - The degrees to be converted into radians
+         * @return radians
+         */
+        _toRad : function(deg) {
+             return deg * Math.PI / 180;
+        },
+
+        /**
+         * Since not all browsers implement this we have our own utility that will
+         * convert from radians into degrees
+         *
+         * @param rad - The radians to be converted into degrees
+         * @return degrees
+         */
+        _toDeg : function(rad) {
+            return rad * 180 / Math.PI;
+        },
+    };
+
+    var dist = distance(-117.146964, 32.734148, -117.144553, 32.734148)
+    var bearing = geo.bearing(-117.146964, 32.734148, -117.144553, 32.734148);
+    var direction = degToCard(bearing)
+    console.log(precisionRound(bearing, 2), direction)
+    console.log(dist, "Feet")
+
+    // https://gist.github.com/felipeskroski/8aec22f01dabdbf8fb6b
+    function degToCard(deg) {
+        if (deg > 11.25 && deg < 33.75) {
+            return "NNE";
+        } else if (deg > 33.75 && deg < 56.25) {
+            return "ENE";
+        } else if (deg > 56.25 && deg < 78.75) {
+            return "E";
+        } else if (deg > 78.75 && deg < 101.25) {
+            return "ESE";
+        } else if (deg > 101.25 && deg < 123.75) {
+            return "ESE";
+        } else if (deg > 123.75 && deg < 146.25) {
+            return "SE";
+        } else if (deg > 146.25 && deg < 168.75) {
+            return "SSE";
+        } else if (deg > 168.75 && deg < 191.25) {
+            return "S";
+        } else if (deg > 191.25 && deg < 213.75) {
+            return "SSW";
+        } else if (deg > 213.75 && deg < 236.25) {
+            return "SW";
+        } else if (deg > 236.25 && deg < 258.75) {
+            return "WSW";
+        } else if (deg > 258.75 && deg < 281.25) {
+            return "W";
+        } else if (deg>281.25 && deg < 303.75) {
+            return "WNW";
+        } else if (deg>303.75 && deg < 326.25) {
+            return "NW";
+        } else if (deg>326.25 && deg < 348.75) {
+            return "NNW";
+        } else {
+            return "N"; 
+        }
+}
+
+</script>
+</body>
+</html>
