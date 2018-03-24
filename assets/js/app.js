@@ -118,12 +118,6 @@ var citymap = {
             lng: -117.152218
         },
     },
-    JAPANESEFRIENDSHIPGARDEN: {
-        center: {
-            lat: 32.730129,
-            lng: -117.149958
-        },
-    },
     LILYPOND: {
         center: {
             lat: 32.731978,
@@ -171,6 +165,7 @@ var citymap = {
                 lng: -117.182885
             },
         },
+
         //hardcode more here, or replace center
     }
 }
@@ -185,7 +180,7 @@ function initMap() {
             lng: -117.144553
         },
         gestureHandling: 'greedy',
-        mapTypeId: 'terrain'
+        mapTypeId: 'satellite'
     });
 
 
@@ -210,7 +205,24 @@ if (navigator.geolocation) {
             lat: position.coords.latitude,
             lng: position.coords.longitude
         };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14.2,
+            center: {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            },
+            gestureHandling: 'greedy',
+            mapTypeId: 'satellite'
+        });
 
+        var marker = new google.maps.Marker({
+            position: {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            },
+            map: map,
+            title: 'Hello World!'
+        });
         infoWindow.setPosition(pos);
         infoWindow.setContent('Location found.');
         infoWindow.open(map);
