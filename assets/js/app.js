@@ -41,32 +41,32 @@ var MUC = {
         $('#splash').slideToggle('slow');
 
     },
-<<<<<<< HEAD
-    ClarifaiImg: function(img64) { // this calls the clarfai app and resturns the list of predictors
-            var app = new Clarifai.App({
-                apiKey: 'de1dff9bec7a40438eacef4b649661b1'
-            });
-=======
-    clarifaiImg: function(img64){// this calls the clarfai app and resturns the list of predictors
+    clarifaiImg: function(img64) { // this calls the clarfai app and resturns the list of predictors
         var app = new Clarifai.App({
             apiKey: 'de1dff9bec7a40438eacef4b649661b1'
         });
->>>>>>> 409b73cabf09dbbf609954417a83fcbe1a95f6aa
 
-            var predictors = app.models.predict(Clarifai.GENERAL_MODEL, img64).then(
-                function(response) {
-                    // do stuff w/response
-                    console.log(response.outputs[0].data.concepts);
-                    return response.outputs[0].data.concepts;
-                },
-                function(err) {
-                    // there was an error!
-                    console.log(err);
-                }
-            )
+        var predictors = app.models.predict(Clarifai.GENERAL_MODEL, img64).then(
+            function(response) {
+                // do stuff w/response
+                console.log(response.outputs[0].data.concepts);
+                return response.outputs[0].data.concepts;
+            },
+            function(err) {
+                // there was an error!
+                console.log(err);
+            }
+        )
 
-<<<<<<< HEAD
-            return predictors;
+        return predictors;
+    },
+    getLocation: function() {
+            if (navigator.geolocation) {
+                return navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                console.log("ERROR: Geolocation is not supported by this browser.");
+                return false;
+            }
         }
         // add player to firebase
         // player added? get the playerboard
@@ -78,28 +78,6 @@ var MUC = {
         // where is the player?
         // where is the point?
         // submit the image to clarifai
-=======
-        return predictors;
-    },
-    getLocation: function(){
-        if (navigator.geolocation) {
-            return navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            console.log("ERROR: Geolocation is not supported by this browser.");
-            return false;
-        }
-    }
-    // add player to firebase
-    // player added? get the playerboard
-    // player scored? get the playerboard
-    // get scav clues
-    // write scav clues (where are scav clues?)
-    // get the playerboard
-    // do navigation things
-    // where is the player?
-    // where is the point?
-    // submit the image to clarifai
->>>>>>> 409b73cabf09dbbf609954417a83fcbe1a95f6aa
         // determine if response from clarifai is good?
         // give the person a point ladies and gentleman
         // write the playerboard

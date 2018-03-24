@@ -112,17 +112,16 @@ body {
 .rowItem {
     padding: 1%;
 }
-    
+
 #aboutUs {
     font-size: 20px;
     font-style: bold;
 }
-    
+
 #search {
     margin-top: 5px;
 }
 
-<<<<<<< HEAD
 #map {
     height: 640px;
     width: 1080px;
@@ -132,8 +131,9 @@ body {
     margin-right: auto;
     position: fixed;
     text-align: center;
-=======
-input[type="file" ] {
+}
+
+input[type="file"] {
     background-color: white;
     align-items: baseline;
     color: black;
@@ -145,7 +145,7 @@ input[type="file" ] {
 }
 
 input#fileupload {
-    background-color:dodgerblue; 
+    background-color: dodgerblue;
     color: white;
 }
 
@@ -155,7 +155,7 @@ form {
 
 button {
     margin: 15%;
-} 
+}
 
 #clue {
     font-family: "Lato", sans-serif;
@@ -169,5 +169,9 @@ button {
 
 .fa {
     color: white;
->>>>>>> 409b73cabf09dbbf609954417a83fcbe1a95f6aa
+    =======
+}
+
+.scav-item-inner {
+    color: white;
 }
