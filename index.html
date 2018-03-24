@@ -67,26 +67,28 @@
       <div class="rowItem">
         <ul class="list-group scav-list w-100 text-center">
           <li class="list-group-item scav-item bg-dark">
-            <div class="row scav-item-inner">
-                <div class="col-4 left-widget">
-                  <!-- <i class="" style="color: white"; font-family="Lato", sans-serif></i> -->
-                  <image src="./assets/images/stream.jpeg" alt="stream"></image>
+            <form class="row scav-item-inner">
+                <div class="col-2 left-widget">
+                    <i class="fa fa-square unsubmitted"></i><span class="unsubmitted">Unsubmitted</span>
+                    <i class="fa fa-check-square submitted"></i><span class="submitted">Unsubmitted</span>
                 </div>
-                <div class="col-6 scav-clue">
+                <div class="col-8 scav-clue">
                   <!-- <span style="color: #f1f1f1; font-size: 20px;"></span>Here is information about the item</span> -->
-                  <form method=""> 
-                    <span class="sr-only">submitted/not submitted (dot?)</span>
-                    <p style="color: #f1f1f1" id="clue"> "body of water with surface water flowing within the bed and banks of a channel" | Japanese Friendship Garden</p>
-                    <input type="file" style="background-color:dodgerblue; color: white" name="fileupload" value="fileupload" id="fileupload"> 
-                    <input type="submit" value="submit" id="submit"> 
-                    <input type="reset" id="reset">
-                  </form>
+                  
+                    
+                    <span style="color: #f1f1f1" id="clue">"body of water with surface water flowing within the bed and banks of a channel" | Japanese Friendship Garden</span>
+                    <input type="hidden" id="location">
+                    
+                    <!-- <input type="submit" value="submit" id="submit"> 
+                    <input type="reset" id="reset"> -->
+                    
                 </div>
 
                 <div class="col-2 right-widget">
-                  <button class="btn btn-primary" id="scavIt">Scav It!</button>
+                    <input type="file" name="fileupload" value="fileupload" id="fileupload" accept="image/*" capture>
+                  <label for="fileupload" class="btn btn-primary" id="scavIt"><i class="fa fa-camera-retro"></i> scav it!</label>
                 </div>
-            </div>
+              </form>
           </li>
         </ul>
       </div>
