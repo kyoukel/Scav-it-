@@ -135,9 +135,9 @@ if (navigator.geolocation) {
             map: map,
             title: 'Hello World!'
         });
-        infoWindow.setPosition(pos);
-        infoWindow.setContent('Location found.');
-        infoWindow.open(map);
+        // infoWindow.setPosition(pos);
+        // infoWindow.setContent('Location found.');
+        // infoWindow.open(map);
         map.setCenter(pos);
     }, function() {
         handleLocationError(true, infoWindow, map.getCenter());
