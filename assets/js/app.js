@@ -41,7 +41,7 @@ var MUC = {
         $('#splash').slideToggle('slow');
         
     },
-    ClarifaiImg: function(img64){// this calls the clarfai app and resturns the list of predictors
+    clarifaiImg: function(img64){// this calls the clarfai app and resturns the list of predictors
         var app = new Clarifai.App({
             apiKey: 'de1dff9bec7a40438eacef4b649661b1'
         });
@@ -59,6 +59,14 @@ var MUC = {
         )
 
         return predictors;
+    },
+    getLocation: function(){
+        if (navigator.geolocation) {
+            return navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            console.log("ERROR: Geolocation is not supported by this browser.");
+            return false;
+        }
     }
     // add player to firebase
     // player added? get the playerboard
