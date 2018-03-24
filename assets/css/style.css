@@ -93,12 +93,17 @@ body {
 
 #stickyNavTop a{
     left: 0;
+    line-height: 1px;
 }
 
 .rowItem {
     padding: 1%;
 }
-    
+
+#rowPadding {
+    padding: 50%;
+}
+
 #aboutUs {
     font-size: 20px;
     font-style: bold;
