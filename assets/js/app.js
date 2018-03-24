@@ -31,20 +31,26 @@ var MUC = {
             $('#splash').slideUp('slow');
         });
 
+        // this is set when the image is entered in a field.
+        $('#base64').on('change', function(){
+            // submit the form and grab the base64 encoded image
+            MUC.submitForm($(this).val());
+        })
         // get geo every minute
-        var getGeoData = setInterval(function(){
-            if (navigator.geolocation) {
-                // alert('test');
-                navigator.geolocation.getCurrentPosition(MUC.makePosition, MUC.posError);
-            }
-        }, 30000);
+        // var getGeoData = setInterval(function(){
+        //     if (navigator.geolocation) {
+        //         // alert('test');
+        //         navigator.geolocation.getCurrentPosition(MUC.makePosition, MUC.posError);
+        //     }
+        // }, 30000);
         
         // get geo once
-        navigator.geolocation.getCurrentPosition(MUC.makePosition);
+        // navigator.geolocation.getCurrentPosition(MUC.makePosition);
 
+        // make the data from the submitted image in the input
         $('#userImage').on('change', function(){
+            // makes the data, then sets a ui element for another function call
             MUC.makeData();
-            MUC.submitForm(MUC.formData);
         });
     },
     makePlayer: function( playerName ){
@@ -65,7 +71,15 @@ var MUC = {
             apiKey: 'de1dff9bec7a40438eacef4b649661b1'
         });
 
-        var predictors = app.models.predict(Clarifai.GENERAL_MODEL, img64 ).then(
+        var img_arr = img64.split(',');
+        var index = (img_arr.length - 1);
+        cl_image = img_arr[index];
+        var image_for_clarifai = { base64: cl_image }
+
+        console.log('clarifai image coming out!')
+        console.log(image_for_clarifai);
+
+        var predictors = app.models.predict(Clarifai.GENERAL_MODEL, image_for_clarifai ).then(
             function(response){
                 // do stuff w/response
                 console.log(response.outputs[0].data.concepts);
@@ -79,16 +93,9 @@ var MUC = {
 
         return predictors;
     },
-    getLocation: function(){
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            console.log("ERROR: Geolocation is not supported by this browser.");
-            return false;
-        }
-    },
-    submitForm: function(formData){
-        console.log(formData);
+    submitForm: function(image64){
+        // console.log(formData);
+        MUC.clarifaiImg(image64);
     },
     makeData: function() {
         
@@ -108,6 +115,7 @@ var MUC = {
             reader.onload = function (e) {
                 MUC.formData.file = e.target.result;
                 // console.log(e.target.result);
+                $('#base64').val(e.target.result).trigger('change');
             }
         }
         
