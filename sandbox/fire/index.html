@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCZm14n7D5AEnnVDJup3ptLIcijDlWSeZ0",
+            authDomain: "muc-project1.firebaseapp.com",
+            databaseURL: "https://muc-project1.firebaseio.com",
+            projectId: "muc-project1",
+            storageBucket: "muc-project1.appspot.com",
+            messagingSenderId: "686942721307"
+        };
+
+        firebase.initializeApp(config);
+
+        // Create a reference the database
+        var database = firebase.database();
+        var games = {
+            state: {},
+            getState: function (state) {
+                this.state = state
+            },
+            getCount: function (list) {
+                console.log(list)
+                return Object.keys(list).length
+            },
+            getPlace: function (index) {
+                return this.state.places[`place${index}`]
+            },
+            getPlaces:function(){
+                return this.getCount(this.state.places)
+            }
+
+        }
+
+        database.ref("games").on("child_added", function (snapshot) {
+            if (snapshot.val().name === "Balboa Park") {
+                // log object to the console.
+                console.log(snapshot.val());
+                games.getState(snapshot.val())
+                var count = games.getCount(games.state.places)
+                var place = games.getPlace(5)
+                console.log(games, place)
+                console.log(games.getPlaces())
+            }
+            // console log errors
+        }, function (errorObject) {
+
+            console.log("ERRORS: " + errorObject.code);
+
+        });
+    </script>
+
+</body>
+
+</html>
