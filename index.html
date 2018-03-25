@@ -60,8 +60,14 @@
         </nav>
 
         <div class="jumbotron">
-            <span class="sr-only">This is where the compass/map/whatever goes</span>
-            <!-- <div id="map" style="width:800px;height:500px"></div> -->
+          <!-- MAP -->
+          <div class="container w-100">
+              <div class="row">
+                  <div class="col-12">
+                      <div id="map"></div>
+                  </div>
+              </div>
+          </div>
         </div>
 
         <!-- DON'T CREATE REPEATING ELEMENTS THAT WILL BE CREATED DYNAMICALLY BY SCAV LIST -->
@@ -88,6 +94,8 @@
                             <div class="col-2 right-widget">
                                 <input type="hidden" id="userLocation">
                                 <input type="file" name="userImage" id="userImage" accept="image/*" capture>
+                                <input type="hidden" id="base64">
+                                <input type="hidden" id="predictions">
                                 <label for="userImage" class="btn btn-primary" id="scavIt"><i class="fa fa-camera-retro"></i> scav it!</label>
                             </div>
                         </form>
@@ -105,41 +113,6 @@
                 <a class="nav-link" href="#">Link</a>
             </div>
         </nav>
-
-        <!-- MAP -->
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-.5"></div>
-                <div class="col-sm-9">
-                    <!-- <div class="jumbotron"> -->
-                    <div id="map"></div>
-                    <!-- </div> -->
-                </div>
-                <div class="col-sm-1"></div>
-            </div>
-        </div>
-
-        <!-- DON'T CREATE REPEATING ELEMENTS THAT WILL BE CREATED DYNAMICALLY BY SCAV LIST -->
-        <main role="main" class="container">
-            <div class="row">
-                <ul class="list-group scav-list w-100 text-center">
-                    <li class="list-group-item scav-item">
-                        <div class="row scav-item-inner">
-                            <div class="col-2 left-widget">
-                                <i class=""></i>
-                            </div>
-                            <div class="col-6 scav-clue">
-                                <span>Here is information about the item</span>
-                            </div>
-                            <div class="col-4 right-widget">
-                                <button class="btn btn-primary">Scav It!</button>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </main>
-
     </div>
 
 
@@ -171,6 +144,7 @@
     <!-- Clarifai -->
     <script type="text/javascript" src="https://sdk.clarifai.com/js/clarifai-latest.js"></script>
     <script src="sandbox/clarifai/img-rec.js"></script>
+    <script src="./assets/js/locations.js"></script>
     <script src="./assets/js/app.js"></script>
 
 </body>

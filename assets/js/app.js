@@ -21,6 +21,12 @@ var MUC = {
         location: {},
         file: ''
     },
+    attrs: { // this is PLACEHOLDER STUFF
+        0: 'blue',
+        1: 'cat',
+        2: 'mammal',
+        4: 'bike'
+    },
     init: function(){
         // When user clicks add player button
         $('#joinHunt').on('click', function(event){
@@ -31,20 +37,22 @@ var MUC = {
             $('#splash').slideUp('slow');
         });
 
-        // get geo every minute
-        var getGeoData = setInterval(function(){
-            if (navigator.geolocation) {
-                // alert('test');
-                navigator.geolocation.getCurrentPosition(MUC.makePosition, MUC.posError);
-            }
-        }, 30000);
-        
-        // get geo once
-        navigator.geolocation.getCurrentPosition(MUC.makePosition);
+        // this is set when the image is entered in a field.
+        $('#base64').on('change', function(){
+            // submit the form and grab the base64 encoded image
+            MUC.submitForm($(this).val());
+        })
 
+        $('#predictions').on('change', function(){
+            var parsedPredictions = JSON.parse($(this).val());
+            // console.log(parsedPredictions);
+            MUC.checkPredictions(parsedPredictions);
+        });
+
+        // make the data from the submitted image in the input
         $('#userImage').on('change', function(){
+            // makes the data, then sets a ui element for another function call
             MUC.makeData();
-            MUC.submitForm(MUC.formData);
         });
     },
     makePlayer: function( playerName ){
@@ -54,6 +62,8 @@ var MUC = {
         var playerKey = firebase.database().ref('players/').push({
             name: playerName
         });
+
+        document.cookie = `player=${playerKey}`;
         console.log('create a coockie wih this!' + playerKey);
         // somehow set a cookie to persist the current player
 
@@ -65,10 +75,19 @@ var MUC = {
             apiKey: 'de1dff9bec7a40438eacef4b649661b1'
         });
 
-        var predictors = app.models.predict(Clarifai.GENERAL_MODEL, img64 ).then(
+        var img_arr = img64.split(',');
+        var index = (img_arr.length - 1);
+        cl_image = img_arr[index];
+        var image_for_clarifai = { base64: cl_image }
+
+        console.log('clarifai image coming out!');
+        console.log(image_for_clarifai);
+
+        var predictors = app.models.predict(Clarifai.GENERAL_MODEL, image_for_clarifai ).then(
             function(response){
                 // do stuff w/response
-                console.log(response.outputs[0].data.concepts);
+                // console.log(response.outputs[0].data.concepts);
+                $('#predictions').val(JSON.stringify(response.outputs[0].data.concepts)).trigger('change');
                 return response.outputs[0].data.concepts;
             },
             function(err){
@@ -79,16 +98,18 @@ var MUC = {
 
         return predictors;
     },
-    getLocation: function(){
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            console.log("ERROR: Geolocation is not supported by this browser.");
-            return false;
-        }
+    submitForm: function(image64){
+        // console.log(formData);
+        var predictions = MUC.clarifaiImg(image64);
     },
-    submitForm: function(formData){
-        console.log(formData);
+    checkPredictions: function(predictions){
+        $.each( MUC.attrs, function(attrKey, attr){
+            $.each( predictions, function(predKey, predProperties){
+                if(predProperties.name === attr){
+                    console.log( `We've got a ${attr} people!`);
+                }
+            });
+        });
     },
     makeData: function() {
         
@@ -108,6 +129,7 @@ var MUC = {
             reader.onload = function (e) {
                 MUC.formData.file = e.target.result;
                 // console.log(e.target.result);
+                $('#base64').val(e.target.result).trigger('change');
             }
         }
         
@@ -123,19 +145,6 @@ var MUC = {
     posError: function(err){
         console.warn(`ERROR(${err.code}): ${err.message}`);
     }
-    // add player to firebase
-    // player added? get the playerboard
-    // player scored? get the playerboard
-    // get scav clues
-    // write scav clues (where are scav clues?)
-    // get the playerboard
-    // do navigation things
-    // where is the player?
-    // where is the point?
-    // submit the image to clarifai
-        // determine if response from clarifai is good?
-        // give the person a point ladies and gentleman
-    // write the playerboard
 }
 
 
