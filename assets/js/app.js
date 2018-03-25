@@ -56,6 +56,7 @@ database.ref("games").on("child_added", function (snapshot) {
         var count = games.getCount(games.state.places)
         var place = games.getPlace(5)
         console.log(games, place)
+        MUC.localPlace = place;
         console.log(games.getPlaces())
 
         // from locations.js we're writing the map
@@ -71,22 +72,55 @@ var MUC = {
         location: {},
         file: ''
     },
+    updatePlace: function(currentPlace){
+        var nextPlace = currentPlace.split('place' );
+        nextPlace = parseInt(nextPlace[1])++;
+
+        // update user's next place as ${nextPlace}
+
+    },
+    userCurrentPlace: {},
     attrs: { // this is PLACEHOLDER STUFF
         0: 'blue',
         1: 'cat',
         2: 'mammal',
         4: 'bike'
     },
-    init: function(){
-        // When user clicks add player button
-        $('#joinHunt').on('click', function(event){
-            event.preventDefault();
-            var name = $('#yourName');
-            MUC.makePlayer(name.val());
-            name.val('');
-            $('#splash').slideUp('slow');
-        });
+    playerId: '',
+    checkPlayerId: function(){
+        if (document.cookie.split(';').indexOf('player=') >= 0 || document.cookie.split('=').indexOf('player') >= 0) {
+            MUC.playerId = MUC.getPlayerCookie('player');
+            console.log('player exists');
+        }else{
+            console.log("player does not exist");
+            $('#splash').css('display', 'block');
+            
+            // bind click event to get new player
+            // When user clicks add player button
+            $('#joinHunt').on('click', function(event){
+                event.preventDefault();
+                var name = $('#yourName');
+                MUC.makePlayer(name.val());
+                name.val('');
+                $('#splash').slideUp('slow');
+            });
 
+        }
+    },
+    getPlayerCookie: function(name){
+        // get the cookie and split it up
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        // return the part with ${name}
+        if (parts.length == 2) return parts.pop().split(";").shift();
+    
+    },
+    init: function(){
+
+        // this checks and starts actions to set a player
+        MUC.checkPlayerId();
+        
+        // hide the messenger
         $('#messenger-wrapper').slideUp().css('display', 'block');
 
         // this is set when the image is entered in a field.
@@ -111,12 +145,12 @@ var MUC = {
         // debugger;
         // Set player key, either playerA or player1
         
-        var playerKey = firebase.database().ref('players/').push({
+        MUC.playerId = firebase.database().ref('players/').push({
             name: playerName
-        });
+        }).key;
 
-        document.cookie = `player=${playerKey}`;
-        console.log('create a coockie wih this!' + playerKey);
+        document.cookie = `player=${MUC.playerId}`;
+        console.log('create a coockie wih this! ' + document.cookie['player']);
         // somehow set a cookie to persist the current player
 
         $('#splash').slideToggle('slow');
