@@ -85,7 +85,7 @@ var citymap = {
 
 function initMap(citymap) {
     // Create the map.
-    var map = new google.maps.Map(document.getElementById('map'), {
+    window.map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16.2,
         center: {
             lat: citymap.lat,
@@ -101,7 +101,7 @@ function initMap(citymap) {
 
         var place = places[placeKey];
 
-        var placeCenter = {
+        var placeCenter = {// be careful, these are reversed!
             lat: place.lng,
             lng: place.lat
         };
@@ -133,15 +133,19 @@ var getLocation = function(){
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 14.2,
-                center: {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                },
-                gestureHandling: 'greedy',
-                mapTypeId: 'satellite'
-            });
+
+            // var map = new google.maps.Map(document.getElementById('map'), {
+            //     zoom: 14.2,
+            //     center: {
+            //         lat: position.coords.latitude,
+            //         lng: position.coords.longitude
+            //     },
+            //     gestureHandling: 'greedy',
+            //     mapTypeId: 'satellite'
+            // });
+            
+            // update the center of the map
+            window.map.setCenter(pos);
     
             var marker = new google.maps.Marker({
                 position: {
