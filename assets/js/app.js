@@ -84,6 +84,8 @@ var MUC = {
             $('#splash').slideUp('slow');
         });
 
+        $('#messenger-wrapper').slideUp().css('display', 'block');
+
         // this is set when the image is entered in a field.
         $('#base64').on('change', function(){
             // submit the form and grab the base64 encoded image
@@ -154,8 +156,28 @@ var MUC = {
             $.each( predictions, function(predKey, predProperties){
                 if(predProperties.name === attr){
                     console.log( `We've got a ${attr} people!`);
+                    
                 }
             });
+        });
+    },
+    messenger: function(mssg, mssgType ){
+        // MAKE ME
+        // <div class="alert alert-primary" role="alert">
+        // This is a primary alert—check it out!
+        // </div>
+        var alertType = (mssgType !== 'good') ? 'alert-danger': 'alert-success';
+        var styling = {
+            class: 'alert ' + alertType
+        }
+        var text = '<h3>' + mssg + '</h3>';
+        var $div = $("<div>").attr(styling).html(text);
+        $('#messenger-wrapper').append($div);
+        $('#messenger-wrapper').slideDown('fast', function(){
+            // kill the messege in 4 sec
+            setTimeout(function(){
+                $('#messenger-wrapper').slideUp('fast').html('');
+            }, 4000);
         });
     },
     makeData: function() {
