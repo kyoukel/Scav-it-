@@ -155,3 +155,82 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: Your browser doesn\'t support geolocation.');
     infoWindow.open(map);
 }
+
+//
+// https://www.geodatasource.com/developers/javascript
+//
+function distance(lat1, lon1, lat2, lon2) {
+    // console.log(lat1, lon1, lat2, lon2)
+	var radlat1 = Math.PI * lat1/180
+	var radlat2 = Math.PI * lat2/180
+	var theta = lon1-lon2
+	var radtheta = Math.PI * theta/180
+	var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+	dist = Math.acos(dist)
+	dist = dist * 180/Math.PI
+	dist = dist * 60 * 1.1515
+    dist = dist * 5280 // convert miles to feet
+    dist = precisionRound(dist, 0)
+	return dist
+}
+
+//
+// round long numbers
+//
+function precisionRound(number, precision) {
+    var factor = Math.pow(10, precision);
+    return Math.round(number * factor) / factor;
+}
+
+//
+// Convert degrees to radians
+//
+function toRad(deg) {
+    return deg * Math.PI / 180;
+}
+
+//
+// Convert radians to degrees
+//
+function toDeg(rad) {
+    return rad * 180 / Math.PI;
+},
+
+//
+// https://gist.github.com/felipeskroski/8aec22f01dabdbf8fb6b
+//
+function degToCard(deg) {
+    if (deg > 11.25 && deg < 33.75) {
+        return "NNE";
+    } else if (deg > 33.75 && deg < 56.25) {
+        return "ENE";
+    } else if (deg > 56.25 && deg < 78.75) {
+        return "E";
+    } else if (deg > 78.75 && deg < 101.25) {
+        return "ESE";
+    } else if (deg > 101.25 && deg < 123.75) {
+        return "ESE";
+    } else if (deg > 123.75 && deg < 146.25) {
+        return "SE";
+    } else if (deg > 146.25 && deg < 168.75) {
+        return "SSE";
+    } else if (deg > 168.75 && deg < 191.25) {
+        return "S";
+    } else if (deg > 191.25 && deg < 213.75) {
+        return "SSW";
+    } else if (deg > 213.75 && deg < 236.25) {
+        return "SW";
+    } else if (deg > 236.25 && deg < 258.75) {
+        return "WSW";
+    } else if (deg > 258.75 && deg < 281.25) {
+        return "W";
+    } else if (deg>281.25 && deg < 303.75) {
+        return "WNW";
+    } else if (deg>303.75 && deg < 326.25) {
+        return "NW";
+    } else if (deg>326.25 && deg < 348.75) {
+        return "NNW";
+    } else {
+        return "N"; 
+    }
+}

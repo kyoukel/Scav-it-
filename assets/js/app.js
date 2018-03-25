@@ -14,7 +14,54 @@ function closeNav() {
     document.body.style.backgroundColor = "white";
 }    
 
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyCZm14n7D5AEnnVDJup3ptLIcijDlWSeZ0",
+    authDomain: "muc-project1.firebaseapp.com",
+    databaseURL: "https://muc-project1.firebaseio.com",
+    projectId: "muc-project1",
+    storageBucket: "muc-project1.appspot.com",
+    messagingSenderId: "686942721307"
+};
+
+firebase.initializeApp(config);
+
+// Create a reference the database
 var database = firebase.database();
+var games = {
+    state: {},
+    getState: function (state) {
+        this.state = state
+    },
+    getCount: function (list) {
+        console.log(list)
+        return Object.keys(list).length
+    },
+    getPlace: function (index) {
+        return this.state.places[`place${index}`]
+    },
+    getPlaces:function(){
+        return this.getCount(this.state.places)
+    }
+}
+
+//
+// get data from Firebase
+//
+database.ref("games").on("child_added", function (snapshot) {
+    if (snapshot.val().name === "Balboa Park") {
+        // log object to the console.
+        console.log(snapshot.val());
+        games.getState(snapshot.val())
+        var count = games.getCount(games.state.places)
+        var place = games.getPlace(5)
+        console.log(games, place)
+        console.log(games.getPlaces())
+    }
+    // console log errors
+    }, function (errorObject) {
+        console.log("ERRORS: " + errorObject.code);
+});
 
 var MUC = {
     formData: {
@@ -150,20 +197,3 @@ var MUC = {
 
 MUC.init();
 
-//
-// https://www.geodatasource.com/developers/javascript
-//
-function distance(lat1, lon1, lat2, lon2) {
-    console.log(lat1, lon1, lat2, lon2)
-	var radlat1 = Math.PI * lat1/180
-	var radlat2 = Math.PI * lat2/180
-	var theta = lon1-lon2
-	var radtheta = Math.PI * theta/180
-	var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-	dist = Math.acos(dist)
-	dist = dist * 180/Math.PI
-	dist = dist * 60 * 1.1515
-    dist = dist * 5280 // convert miles to feet
-    dist = precisionRound(dist, 0)
-	return dist
-}
