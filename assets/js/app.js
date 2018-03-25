@@ -52,14 +52,15 @@ database.ref("games").on("child_added", function (snapshot) {
     if (snapshot.val().name === "Balboa Park") {
         // log object to the console.
         console.log(snapshot.val());
-        games.getState(snapshot.val())
-        var count = games.getCount(games.state.places)
-        var place = games.getPlace(5)
-        console.log(games, place)
-        MUC.localPlace = place;
-        console.log(games.getPlaces())
+        games.getState(snapshot.val());
+        var count = games.getCount(games.state.places);
+        var place = games.getPlace(5);
+        console.log(games, place);
+        MUC.playerCurrentPlace = place;
+        MUC.makeScavClue(place);
+        console.log(games.getPlaces());
 
-        // from locations.js we're writing the map
+        // from locations.js we're writing the map here
         initMap(snapshot.val());
     }
     // console log errors
@@ -87,6 +88,7 @@ var MUC = {
         4: 'bike'
     },
     playerId: '',
+    playerCurrentPlace: {},
     checkPlayerId: function(){
         if (document.cookie.split(';').indexOf('player=') >= 0 || document.cookie.split('=').indexOf('player') >= 0) {
             MUC.playerId = MUC.getPlayerCookie('player');
@@ -141,6 +143,18 @@ var MUC = {
             MUC.makeData();
         });
     },
+    makeScavClue: function(scavengePlace){
+        // scavengePlace is a place0 or somehting from fb
+        var $clueDiv = $('<div>');
+        var clueDivAttributes = {
+            'data-attr': scavengePlace.attrs.toString(),
+            'data-lat': scavengePlace.lat,
+            'data-lng': scavengePlace.lng,
+            class: 'clue-inner'
+        }
+        $clueDiv.attr(clueDivAttributes).html(`You need to find a '${scavengePlace.clue}' <br>Near location: ${scavengePlace.name}`);
+        $('.scav-clue').html($clueDiv);
+    },
     makePlayer: function( playerName ){
         // debugger;
         // Set player key, either playerA or player1
@@ -193,7 +207,7 @@ var MUC = {
             $.each( predictions, function(predKey, predProperties){
                 if(predProperties.name === attr){
                     console.log( `We've got a ${attr} people!`);
-                    
+                    // The 
                 }
             });
         });
