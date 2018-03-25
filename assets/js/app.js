@@ -34,7 +34,7 @@ var games = {
         this.state = state
     },
     getCount: function (list) {
-        console.log(list)
+        // console.log(list)
         return Object.keys(list).length
     },
     getPlace: function (index) {
@@ -57,6 +57,9 @@ database.ref("games").on("child_added", function (snapshot) {
         var place = games.getPlace(5)
         console.log(games, place)
         console.log(games.getPlaces())
+
+        // from locations.js we're writing the map
+        initMap(snapshot.val());
     }
     // console log errors
     }, function (errorObject) {

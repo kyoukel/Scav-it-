@@ -81,68 +81,95 @@ var citymap = {
         //hardcode more here, or replace center
     }
 }
-initMap();
+// initMap(citymap);
 
-function initMap() {
+function initMap(citymap) {
     // Create the map.
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 14.2,
+        zoom: 16.2,
         center: {
-            lat: 32.734148,
-            lng: -117.144553
+            lat: citymap.lat,
+            lng: citymap.lng
         },
         gestureHandling: 'greedy',
         mapTypeId: 'satellite'
     });
 
+    var places = citymap.places;
 
+    for (var placeKey in places) {
 
-    for (var city in citymap) {
+        var place = places[placeKey];
+
+        var placeCenter = {
+            lat: place.lng,
+            lng: place.lat
+        };
+
+        console.log(placeCenter);
+
+        // placeCenter = {
+        //     lat: 32.731978,
+        //     lng: -117.149235
+        // };
+
         // Add the circle for each scav to the map.
         var cityCircle = new google.maps.Circle({
-            strokeColor: '#ff4d4d',
+            strokeColor: '#FF69B4',
             strokeOpacity: 0.8,
             strokeWeight: 2,
-            fillColor: '#ff4d4d',
-            fillOpacity: 0.35,
+            fillColor: '#FF69B4',
+            fillOpacity: 0.65,
             map: map,
-            center: citymap[city].center,
+            center: placeCenter,
             radius: Math.sqrt(2) * 25
         });
     }
 }
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-        var pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-        };
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 14.2,
-            center: {
+var getLocation = function(){
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
-            },
-            gestureHandling: 'greedy',
-            mapTypeId: 'satellite'
-        });
+            };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14.2,
+                center: {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                },
+                gestureHandling: 'greedy',
+                mapTypeId: 'satellite'
+            });
+    
+            var marker = new google.maps.Marker({
+                position: {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                },
+                map: map,
+                title: 'Balboa Park'
+            });
 
-        var marker = new google.maps.Marker({
-            position: {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            },
-            map: map,
-            title: 'Balboa Park'
+            // set the location into the form
+            $('#userLat').val(position.coords.latitude);
+            $('#userLong').val(position.coords.longitude);
+
+            // infoWindow.setPosition(pos);
+            // infoWindow.setContent('Location found.');
+            // infoWindow.open(map);
+            // map.setCenter(pos);
+            //     }, function() {
+            //         handleLocationError(true, infoWindow, map.getCenter());
         });
-        // infoWindow.setPosition(pos);
-        // infoWindow.setContent('Location found.');
-        // infoWindow.open(map);
-        // map.setCenter(pos);
-        //     }, function() {
-        //         handleLocationError(true, infoWindow, map.getCenter());
-    });
+    }
 }
+// wait for the doc before trying to get location?
+$(document).ready(function(){
+    // get the location from geolocation
+    getLocation();
+});
 // else {
 //     // Browser doesn't support Geolocation
 //     handleLocationError(false, infoWindow, map.getCenter());
