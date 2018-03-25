@@ -196,7 +196,7 @@ function toRad(deg) {
 //
 function toDeg(rad) {
     return rad * 180 / Math.PI;
-},
+}
 
 //
 // https://gist.github.com/felipeskroski/8aec22f01dabdbf8fb6b
