@@ -149,3 +149,7 @@ button {
 .scav-item-inner {
     color: white;
 }
+
+.submitted {
+    display: none;
+}
