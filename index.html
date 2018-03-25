@@ -50,13 +50,7 @@
 
         <nav class="navbar sticky-top navbar-dark bg-dark" id="stickyNavTop">
             <span style="color:#007bff; font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-            <!-- <a class="navbar-brand" href="#">Sticky top</a> -->
-            <!--UNDECIDED IF WE WANT LINKS AT THE TOP AT THIS TIME-->
-            <!-- <div class="d-flex align-items-end"> 
-          <a class="nav-link" href="#">Home</a>
-          <a class="nav-link" href="#">Link</a>
-          <a class="nav-link" href="#">Link</a>
-        </div> -->
+            <button onclick="getLocation()" class="btn btn-primary m-0">Refresh Location</button>
         </nav>
 
         <div class="jumbotron">
@@ -84,11 +78,11 @@
                 <ul class="list-group scav-list w-100 text-center">
                     <li id="place0" class="list-group-item scav-item bg-dark">
                         <form class="row scav-item-inner">
-                            <div class="col-2 left-widget">
+                            <div class="col-md-2 left-widget">
                                 <i class="fa fa-square unsubmitted"></i><span class="unsubmitted"> Unsubmitted</span>
                                 <i class="fa fa-check-square submitted"></i><span class="submitted"> Unsubmitted</span>
                             </div>
-                            <div class="col-8 scav-clue">
+                            <div class="col-sm-10 col-md-8 scav-clue">
                                 <!-- <span style="color: #f1f1f1; font-size: 20px;"></span>Here is information about the item</span> -->
 
                                 <span style="color: #f1f1f1" id="clue">"body of water with surface water flowing within the bed and banks of a channel" | Japanese Friendship Garden</span>
@@ -99,8 +93,9 @@
 
                             </div>
 
-                            <div class="col-2 right-widget">
-                                <input type="hidden" id="userLocation">
+                            <div class="col-sm-12 col-md-2 right-widget">
+                                <input type="text" id="userLat" style="display: block">
+                                <input type="text" id="userLong" style="display: block">
                                 <input type="file" name="userImage" id="userImage" accept="image/*" capture>
                                 <input type="hidden" id="base64">
                                 <input type="hidden" id="predictions">
@@ -114,12 +109,7 @@
 
         <nav class="navbar sticky-top navbar-dark bg-dark" id="stickyNavTop">
             <span style="color:#007bff; font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-            <!-- <a class="navbar-brand" href="#">Sticky top</a> -->
-            <div class="d-flex align-items-end">
-                <a class="nav-link" href="#">Home</a>
-                <a class="nav-link" href="#">Link</a>
-                <a class="nav-link" href="#">Link</a>
-            </div>
+
         </nav>
     </div>
 
