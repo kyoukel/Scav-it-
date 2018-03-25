@@ -102,8 +102,8 @@ function initMap(citymap) {
         var place = places[placeKey];
 
         var placeCenter = {// be careful, these are reversed!
-            lat: place.lng,
-            lng: place.lat
+            lat: place.lat,
+            lng: place.lng
         };
 
         console.log(placeCenter);
@@ -205,6 +205,35 @@ function distance(lat1, lon1, lat2, lon2) {
     dist = dist * 5280 // convert miles to feet
     dist = precisionRound(dist, 0)
 	return dist
+}
+
+var rad = function(x) {
+    return x * Math.PI / 180;
+};
+
+//   pLat1, pLng1, pLat2, pLng2
+// var getDistance = function(p1, p2) {
+//     var R = 6378137; // Earth’s mean radius in meter
+//     var dLat = rad(p2.lat() - p1.lat());
+//     var dLong = rad(p2.lng() - p1.lng());
+//     var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+//         Math.cos(rad(p1.lat())) * Math.cos(rad(p2.lat())) *
+//         Math.sin(dLong / 2) * Math.sin(dLong / 2);
+//     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+//     var d = R * c;
+//     return d; // returns the distance in meter
+// };
+
+var getDistance = function(pLat1, pLng1, pLat2, pLng2){
+    var R = 6378137; // Earth’s mean radius in meter
+    var dLat = rad(pLat2 - pLat1);
+    var dLong = rad(pLng2 - pLng2);
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(rad(pLat1)) * Math.cos(rad(pLat2)) *
+        Math.sin(dLong / 2) * Math.sin(dLong / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c;
+    return d; // returns the distance in meter
 }
 
 //

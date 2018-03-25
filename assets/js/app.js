@@ -77,7 +77,7 @@ var MUC = {
         var nextPlace = currentPlace.split('place' );
         nextPlace = parseInt(nextPlace[1])++;
 
-        // update user's next place as ${nextPlace}
+        // TODO update user's next place as ${nextPlace}
 
     },
     userCurrentPlace: {},
@@ -134,7 +134,13 @@ var MUC = {
         $('#predictions').on('change', function(){
             var parsedPredictions = JSON.parse($(this).val());
             // console.log(parsedPredictions);
-            MUC.checkPredictions(parsedPredictions);
+            if(MUC.checkPosition()){
+                MUC.checkPredictions(parsedPredictions);
+            }else{
+                MUC.messenger('Sorry, but you\'re not close enough to the clue\'s location', 'bad');
+            }
+
+            
         });
 
         // make the data from the submitted image in the input
@@ -150,8 +156,10 @@ var MUC = {
             'data-attr': scavengePlace.attrs.toString(),
             'data-lat': scavengePlace.lat,
             'data-lng': scavengePlace.lng,
-            class: 'clue-inner'
+            class: 'clue-inner',
+            id: 'scavData'
         }
+        MUC.attrs = scavengePlace.attrs;
         $clueDiv.attr(clueDivAttributes).html(`You need to find a '${scavengePlace.clue}' <br>Near location: ${scavengePlace.name}`);
         $('.scav-clue').html($clueDiv);
     },
@@ -203,33 +211,26 @@ var MUC = {
         var predictions = MUC.clarifaiImg(image64);
     },
     checkPredictions: function(predictions){
+        var predictionFound = false;
         $.each( MUC.attrs, function(attrKey, attr){
             $.each( predictions, function(predKey, predProperties){
                 if(predProperties.name === attr){
                     console.log( `We've got a ${attr} people!`);
-                    // The 
+                    // check the location of the user?
+                    // TODO or update the place to next one and tell the user good job?
+                    predictionFound = true;
+                    return;
                 }
+                return;
             });
+            
         });
-    },
-    messenger: function(mssg, mssgType ){
-        // MAKE ME
-        // <div class="alert alert-primary" role="alert">
-        // This is a primary alert—check it out!
-        // </div>
-        var alertType = (mssgType !== 'good') ? 'alert-danger': 'alert-success';
-        var styling = {
-            class: 'alert ' + alertType
+        // when the function loops back out and there is a truth, huray!
+        if(predictionFound){
+            MUC.messenger('Congrads! You\'ve completed a clue!', 'good');
+        }else{
+            MUC.messenger('Sorry! Try to find the clue item again.', 'bad');
         }
-        var text = '<h3>' + mssg + '</h3>';
-        var $div = $("<div>").attr(styling).html(text);
-        $('#messenger-wrapper').append($div);
-        $('#messenger-wrapper').slideDown('fast', function(){
-            // kill the messege in 4 sec
-            setTimeout(function(){
-                $('#messenger-wrapper').slideUp('fast').html('');
-            }, 4000);
-        });
     },
     makeData: function() {
         
@@ -254,16 +255,46 @@ var MUC = {
         }
         
     },
-    makePosition: function(position){
-        
-            MUC.formData.location = {
-                lat: position.coords.latitude,
-                long: position.coords.longitude
-            };
-        
+    checkPosition: function(){
+
+        var userLong = $('#userLong').val();
+        var userLat = $('#userLat').val();
+        var poiLat = $('#scavData').attr('data-lat');
+        var poiLong = $('#scavData').attr('data-lng');
+
+
+        // use distance() from locations.js to determine success?
+        if( (Math.sqrt(2) * 25) > getDistance( userLat, userLong, poiLat, poiLong)){
+            // they can scavenge the item
+            console.log('in bounds! read to scav!');
+            return true;
+        }else{
+            // you're out of bounds!
+            console.log('out of bounds!');
+            return false;
+        }
     },
     posError: function(err){
         console.warn(`ERROR(${err.code}): ${err.message}`);
+    },
+    messenger: function(mssg, mssgType ){
+        // MAKE ME
+        // <div class="alert alert-primary" role="alert">
+        // This is a primary alert—check it out!
+        // </div>
+        var alertType = (mssgType !== 'good') ? 'alert-danger': 'alert-success';
+        var styling = {
+            class: 'alert ' + alertType
+        }
+        var text = '<h3>' + mssg + '</h3>';
+        var $div = $("<div>").attr(styling).html(text);
+        $('#messenger-wrapper').append($div);
+        $('#messenger-wrapper').slideDown('fast', function(){
+            // kill the messege in 4 sec
+            setTimeout(function(){
+                $('#messenger-wrapper').slideUp('fast').html('');
+            }, 4000);
+        });
     }
 }
 
