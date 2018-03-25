@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div id="splash">
+    <div id="splash" style="display: none">
         <div class="container">
           <div class="row">
             <div class="card welcome-form">
@@ -50,6 +50,9 @@
 
         <nav class="navbar sticky-top navbar-dark bg-dark" id="stickyNavTop">
             <span id="stickyNavSpan" onclick="openNav()" class="text-center">&#9776;Insert Player Name</span>
+
+            <span style="color:#007bff; font-size:30px;cursor:pointer" onclick="openNav()">&times;</span>
+            <button onclick="getLocation()" class="btn btn-primary m-0">Refresh Location</button>
         </nav>
 
         <div class="jumbotron">
@@ -83,16 +86,15 @@
                             </div>
                             <div class="col-md col-lg-8 scav-clue">
                                 <!-- Here is information about the item-->
-
                                 <!--Name of Place/Location-->
-
-
-                                <span id="clue"><b id="boldLocation">Japanese Friendship Garden  </b><p id="clueText">"body of water with surface water flowing within the bed and banks of a channel"</p></span>
-
+                                <span style="color: #f1f1f1" id="clue">A Clue for something to find...</span>
+                                <!--<span id="clue"><b id="boldLocation">Japanese Friendship Garden  </b><p id="clueText">"body of water with surface water flowing within the bed and banks of a channel"</p></span>-->
                             </div>
 
                             <div class="col-md col-lg-2 right-widget">
                                 <input type="hidden" id="userLocation">
+                                <!--<input type="text" id="userLat" style="display: block">-->
+                                <!--<input type="text" id="userLong" style="display: block">-->
                                 <input type="file" name="userImage" id="userImage" accept="image/*" capture>
                                 <input type="hidden" id="base64">
                                 <input type="hidden" id="predictions">
@@ -111,7 +113,7 @@
     </div>
 
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQwL81AM3LwGU05HGzI3hf_-lUJa4ed6k&"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQwL81AM3LwGU05HGzI3hf_-lUJa4ed6k&libraries=geometry,places,maps"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -126,20 +128,21 @@
 
     <script>
         // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyCZm14n7D5AEnnVDJup3ptLIcijDlWSeZ0",
-            authDomain: "muc-project1.firebaseapp.com",
-            databaseURL: "https://muc-project1.firebaseio.com",
-            projectId: "muc-project1",
-            storageBucket: "muc-project1.appspot.com",
-            messagingSenderId: "686942721307"
-        };
-        firebase.initializeApp(config);
+        // var config = {
+        //     apiKey: "AIzaSyCZm14n7D5AEnnVDJup3ptLIcijDlWSeZ0",
+        //     authDomain: "muc-project1.firebaseapp.com",
+        //     databaseURL: "https://muc-project1.firebaseio.com",
+        //     projectId: "muc-project1",
+        //     storageBucket: "muc-project1.appspot.com",
+        //     messagingSenderId: "686942721307"
+        // };
+        // firebase.initializeApp(config);
     </script>
     <!-- Clarifai -->
     <script type="text/javascript" src="https://sdk.clarifai.com/js/clarifai-latest.js"></script>
     <script src="sandbox/clarifai/img-rec.js"></script>
     <script src="./assets/js/locations.js"></script>
+    <script src="./assets/js/christianclues.js"></script>
     <script src="./assets/js/app.js"></script>
 
 </body>

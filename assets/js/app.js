@@ -14,28 +14,116 @@ function closeNav() {
     document.body.style.backgroundColor = "white";
 }    
 
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyCZm14n7D5AEnnVDJup3ptLIcijDlWSeZ0",
+    authDomain: "muc-project1.firebaseapp.com",
+    databaseURL: "https://muc-project1.firebaseio.com",
+    projectId: "muc-project1",
+    storageBucket: "muc-project1.appspot.com",
+    messagingSenderId: "686942721307"
+};
+
+firebase.initializeApp(config);
+
+// Create a reference the database
 var database = firebase.database();
+var games = {
+    state: {},
+    getState: function (state) {
+        this.state = state
+    },
+    getCount: function (list) {
+        // console.log(list)
+        return Object.keys(list).length
+    },
+    getPlace: function (index) {
+        return this.state.places[`place${index}`]
+    },
+    getPlaces:function(){
+        return this.getCount(this.state.places)
+    }
+}
+
+//
+// get data from Firebase
+//
+database.ref("games").on("child_added", function (snapshot) {
+    if (snapshot.val().name === "Balboa Park") {
+        // log object to the console.
+        console.log(snapshot.val());
+        games.getState(snapshot.val());
+        var count = games.getCount(games.state.places);
+        var place = games.getPlace(5);
+        console.log(games, place);
+        MUC.playerCurrentPlace = place;
+        MUC.makeScavClue(place);
+        console.log(games.getPlaces());
+
+        // from locations.js we're writing the map here
+        initMap(snapshot.val());
+    }
+    // console log errors
+    }, function (errorObject) {
+        console.log("ERRORS: " + errorObject.code);
+});
 
 var MUC = {
     formData: {
         location: {},
         file: ''
     },
+    updatePlace: function(currentPlace){
+        var nextPlace = currentPlace.split('place' );
+        nextPlace = parseInt(nextPlace[1])++;
+
+        // update user's next place as ${nextPlace}
+
+    },
+    userCurrentPlace: {},
     attrs: { // this is PLACEHOLDER STUFF
         0: 'blue',
         1: 'cat',
         2: 'mammal',
         4: 'bike'
     },
+    playerId: '',
+    playerCurrentPlace: {},
+    checkPlayerId: function(){
+        if (document.cookie.split(';').indexOf('player=') >= 0 || document.cookie.split('=').indexOf('player') >= 0) {
+            MUC.playerId = MUC.getPlayerCookie('player');
+            console.log('player exists');
+        }else{
+            console.log("player does not exist");
+            $('#splash').css('display', 'block');
+            
+            // bind click event to get new player
+            // When user clicks add player button
+            $('#joinHunt').on('click', function(event){
+                event.preventDefault();
+                var name = $('#yourName');
+                MUC.makePlayer(name.val());
+                name.val('');
+                $('#splash').slideUp('slow');
+            });
+
+        }
+    },
+    getPlayerCookie: function(name){
+        // get the cookie and split it up
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        // return the part with ${name}
+        if (parts.length == 2) return parts.pop().split(";").shift();
+    
+    },
     init: function(){
-        // When user clicks add player button
-        $('#joinHunt').on('click', function(event){
-            event.preventDefault();
-            var name = $('#yourName');
-            MUC.makePlayer(name.val());
-            name.val('');
-            $('#splash').slideUp('slow');
-        });
+
+        // this checks and starts actions to set a player
+        MUC.checkPlayerId();
+        
+        // hide the messenger
+        $('#messenger-wrapper').slideUp().css('display', 'block');
 
         // this is set when the image is entered in a field.
         $('#base64').on('change', function(){
@@ -55,16 +143,28 @@ var MUC = {
             MUC.makeData();
         });
     },
+    makeScavClue: function(scavengePlace){
+        // scavengePlace is a place0 or somehting from fb
+        var $clueDiv = $('<div>');
+        var clueDivAttributes = {
+            'data-attr': scavengePlace.attrs.toString(),
+            'data-lat': scavengePlace.lat,
+            'data-lng': scavengePlace.lng,
+            class: 'clue-inner'
+        }
+        $clueDiv.attr(clueDivAttributes).html(`You need to find a '${scavengePlace.clue}' <br>Near location: ${scavengePlace.name}`);
+        $('.scav-clue').html($clueDiv);
+    },
     makePlayer: function( playerName ){
         // debugger;
         // Set player key, either playerA or player1
         
-        var playerKey = firebase.database().ref('players/').push({
+        MUC.playerId = firebase.database().ref('players/').push({
             name: playerName
-        });
+        }).key;
 
-        document.cookie = `player=${playerKey}`;
-        console.log('create a coockie wih this!' + playerKey);
+        document.cookie = `player=${MUC.playerId}`;
+        console.log('create a coockie wih this! ' + document.cookie['player']);
         // somehow set a cookie to persist the current player
 
         $('#splash').slideToggle('slow');
@@ -107,8 +207,28 @@ var MUC = {
             $.each( predictions, function(predKey, predProperties){
                 if(predProperties.name === attr){
                     console.log( `We've got a ${attr} people!`);
+                    // The 
                 }
             });
+        });
+    },
+    messenger: function(mssg, mssgType ){
+        // MAKE ME
+        // <div class="alert alert-primary" role="alert">
+        // This is a primary alert—check it out!
+        // </div>
+        var alertType = (mssgType !== 'good') ? 'alert-danger': 'alert-success';
+        var styling = {
+            class: 'alert ' + alertType
+        }
+        var text = '<h3>' + mssg + '</h3>';
+        var $div = $("<div>").attr(styling).html(text);
+        $('#messenger-wrapper').append($div);
+        $('#messenger-wrapper').slideDown('fast', function(){
+            // kill the messege in 4 sec
+            setTimeout(function(){
+                $('#messenger-wrapper').slideUp('fast').html('');
+            }, 4000);
         });
     },
     makeData: function() {
@@ -150,20 +270,3 @@ var MUC = {
 
 MUC.init();
 
-//
-// https://www.geodatasource.com/developers/javascript
-//
-function distance(lat1, lon1, lat2, lon2) {
-    console.log(lat1, lon1, lat2, lon2)
-	var radlat1 = Math.PI * lat1/180
-	var radlat2 = Math.PI * lat2/180
-	var theta = lon1-lon2
-	var radtheta = Math.PI * theta/180
-	var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-	dist = Math.acos(dist)
-	dist = dist * 180/Math.PI
-	dist = dist * 60 * 1.1515
-    dist = dist * 5280 // convert miles to feet
-    dist = precisionRound(dist, 0)
-	return dist
-}
