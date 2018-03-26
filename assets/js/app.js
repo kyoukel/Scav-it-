@@ -54,7 +54,10 @@ database.ref("games").on("child_added", function (snapshot) {
         console.log(snapshot.val());
         games.getState(snapshot.val());
         var count = games.getCount(games.state.places);
+        
+        // passing in the #, in this case 5 so 
         var place = games.getPlace(5);
+        
         console.log(games, place);
         MUC.playerCurrentPlace = place;
         MUC.makeScavClue(place);
@@ -89,34 +92,6 @@ var MUC = {
     },
     playerId: '',
     playerCurrentPlace: {},
-    checkPlayerId: function(){
-        if (document.cookie.split(';').indexOf('player=') >= 0 || document.cookie.split('=').indexOf('player') >= 0) {
-            MUC.playerId = MUC.getPlayerCookie('player');
-            console.log('player exists');
-        }else{
-            console.log("player does not exist");
-            $('#splash').css('display', 'block');
-            
-            // bind click event to get new player
-            // When user clicks add player button
-            $('#joinHunt').on('click', function(event){
-                event.preventDefault();
-                var name = $('#yourName');
-                MUC.makePlayer(name.val());
-                name.val('');
-                $('#splash').slideUp('slow');
-            });
-
-        }
-    },
-    getPlayerCookie: function(name){
-        // get the cookie and split it up
-        var value = "; " + document.cookie;
-        var parts = value.split("; " + name + "=");
-        // return the part with ${name}
-        if (parts.length == 2) return parts.pop().split(";").shift();
-    
-    },
     init: function(){
 
         // this checks and starts actions to set a player
@@ -149,7 +124,35 @@ var MUC = {
             MUC.makeData();
         });
     },
-    makeScavClue: function(scavengePlace){
+    checkPlayerId: function(){
+        if (document.cookie.split(';').indexOf('player=') >= 0 || document.cookie.split('=').indexOf('player') >= 0) {
+            MUC.playerId = MUC.getPlayerCookie('player');
+            console.log('player exists');
+        }else{
+            console.log("player does not exist");
+            $('#splash').css('display', 'block');
+            
+            // bind click event to get new player
+            // When user clicks add player button
+            $('#joinHunt').on('click', function(event){
+                event.preventDefault();
+                var name = $('#yourName');
+                MUC.makePlayer(name.val());
+                name.val('');
+                $('#splash').slideUp('slow');
+            });
+
+        }
+    },
+    getPlayerCookie: function(name){
+        // get the cookie and split it up
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        // return the part with ${name}
+        if (parts.length == 2) return parts.pop().split(";").shift();
+    
+    },
+    makeScavClue: function(scavengePlace){ // this writes out a new scav clue when you pass it a place
         // scavengePlace is a place0 or somehting from fb
         var $clueDiv = $('<div>');
         var clueDivAttributes = {
@@ -225,7 +228,8 @@ var MUC = {
             });
             
         });
-        // when the function loops back out and there is a truth, huray!
+        // TODO Go to the next CLUE @christian
+        //when the function loops back out and there is a truth, huray!
         if(predictionFound){
             MUC.messenger('Congrads! You\'ve completed a clue!', 'good');
         }else{
@@ -278,6 +282,7 @@ var MUC = {
         console.warn(`ERROR(${err.code}): ${err.message}`);
     },
     messenger: function(mssg, mssgType ){
+        // Tell the user differnt good or bad things
         // MAKE ME
         // <div class="alert alert-primary" role="alert">
         // This is a primary alert—check it out!
