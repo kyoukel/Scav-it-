@@ -140,12 +140,16 @@ var MUC = {
             MUC.makeData();
         });
     },
+    setCurrentHunter: function(playerName){
+        MUC.playerName = 'Hunter: ' + playerName;
+        $('#hunter-name').text( MUC.playerName );
+    },
     checkPlayerId: function() {
         if (document.cookie.split(';').indexOf('player=') >= 0 || document.cookie.split('=').indexOf('player') >= 0) {
             MUC.playerId = MUC.getPlayerCookie('player');
             firebase.database().ref('players/' + MUC.playerId ).once('value').then(function(snapshot) {
-                MUC.playerName = 'Hunter: ' + (snapshot.val() && snapshot.val().name) || 'None';
-                $('#hunter-name').text( MUC.playerName );
+                var playerName = (snapshot.val() && snapshot.val().name) || 'None';
+                MUC.setCurrentHunter(playerName);
             });
 
             console.log('player exists');
@@ -199,7 +203,8 @@ var MUC = {
         console.log('create a coockie wih this! ' + document.cookie['player']);
         // somehow set a cookie to persist the current player
         document.cookie = `gameCounter=0`;
-
+        // $('#hunter-name').text( MUC.playerName );
+        MUC.setCurrentHunter(playerName);
 
     },
     clarifaiImg: function(img64) { // this calls the clarfai app and resturns the list of predictors
