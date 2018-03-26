@@ -14,33 +14,36 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/loader.css">
 </head>
 
 <body>
-    <div id="splash" style="display: none">
-        <div class="container">
-          <div class="row">
-            <div class="card welcome-form">
-              <div class="card-header">
-                  <h1 id="helloText">Hello, Your Name is:</h1>
-              </div>
-              <div class="card-body row">
-                <div class="col-md col-sm">
-                    <input id="yourName" type="text" class="form-control" >
+        <div id="splash" style="display: none">
+                <div class="container">
+                  <div class="row">
+                    <div class="card welcome-form">
+                      <div class="card-header bg-primary p-4">
+                          <h1 class="text-white">Hello, Your Name is:</h1>
+                      </div>
+                      <div class="card-body row">
+                        <div class="col-7">
+                            <input id="yourName" placeholder="Your Hunter Handle" type="text" class="form-control" >
+                        </div>
+                        <div class="col-5">
+                            <button id="joinHunt" class="btn btn-primary">Join the Hunt!</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-md col-sm">
-                    <button id="joinHunt" class="btn">Join the Hunt!</button>
-                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
     <!-- Fixed navbar -->
     <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">Help | Q/A</a>
+            <a href="javascript:void(0)" class="closebtn text-primary" onclick="closeNav()">&times;</a>
+            <div class="sidenav-inner">
+                content for off canvas
+            </div>
     </div>
 
     <!-- Use any element to open the sidenav-->
@@ -49,9 +52,8 @@
 
 
         <nav class="navbar sticky-top navbar-dark bg-dark" id="stickyNavTop">
-            <span id="stickyNavSpan" onclick="openNav()" class="text-center">&#9776;Insert Player Name</span>
-
-            <span style="color:#007bff; font-size:30px;cursor:pointer" onclick="openNav()">&times;</span>
+            <span id="stickyNavSpan" onclick="openNav()" class="text-center text-primary">&#9776;</span>
+            <h2 id="hunter-name">Hunter Name</h2>
             <button onclick="getLocation()" class="btn btn-primary m-0">Refresh Location</button>
         </nav>
 
@@ -59,7 +61,7 @@
             <!-- MAP -->
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-sm-12">
                         <div id="map"></div>
                     </div>
                 </div>
@@ -80,18 +82,18 @@
                 <ul class="list-group scav-list" id="scav-list">
                     <li id="place0" class="list-group-item scav-item bg-dark">
                         <form class="row scav-item-inner">
-                            <div class="col-md col-lg-2 left-widget">
+                            <!-- <div class=" left-widget">
                                 <i class="fa fa-square unsubmitted"></i><span class="unsubmitted"> Unsubmitted</span>
                                 <i class="fa fa-check-square submitted"></i><span class="submitted"> Submitted</span>
-                            </div>
-                            <div class="col-md col-lg-8 scav-clue">
+                            </div> -->
+                            <div class="col-sm-12 col-md-10 scav-clue text-center pb-2">
                                 <!-- Here is information about the item-->
                                 <!--Name of Place/Location-->
                                 <span style="color: #f1f1f1" id="clue">A Clue for something to find...</span>
                                 <!--<span id="clue"><b id="boldLocation">Japanese Friendship Garden  </b><p id="clueText">"body of water with surface water flowing within the bed and banks of a channel"</p></span>-->
                             </div>
-
-                            <div class="col-sm-12 col-md-2 right-widget">
+                            
+                            <div class="col-sm-12 col-md-2 right-widget text-center">
                                 <input type="hidden" id="userLat" >
                                 <input type="hidden" id="userLong" >
                                 <input type="file" name="userImage" id="userImage" accept="image/*" capture>
@@ -143,6 +145,7 @@
     <script src="./assets/js/locations.js"></script>
     <script src="./assets/js/christianclues.js"></script>
     <script src="./assets/js/app.js"></script>
+    <script src="./assets/js/loader.js"></script>
 
 </body>
 

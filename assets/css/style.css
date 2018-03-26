@@ -1,25 +1,8 @@
+* {
+    /* outline: 1px solid green; */
+}
+
 /* CUSTOM STYLES */
-.card-header {
-    background-color: #007bff;
-    border-bottom-color: black;
-    border-bottom: 3px solid;
-    padding: 4;
-}
-
-#helloText {
-    color: #f1f1f1;
-}
-
-#yourName {
-    margin-top: 10%;
-}
-
-#joinHunt {
-    background-color: #007bff;
-    color: #f1f1f1;
-    font-weight: bold;
-}
-
 body {
     position: relative;
     height: 100vh;
@@ -32,13 +15,21 @@ body {
     position: relative;
     padding: 0 !important;
     min-width: 100%;
-    /* justify-content: center;
- */
+}
+
+#splash .btn-primary {
+    margin: 0;
+}
+
+#stickyNavSpan {
+    font-size: 30px;
+    cursor: pointer;
 }
 
 .jumbotron .container,.jumbotron  .row {
     min-width: 100%;
     padding: 0 !important;
+    overflow: hidden;
 }
 
 #map {
@@ -62,8 +53,6 @@ body {
     margin-top: 10vh;
     margin-left: auto;
     margin-right: auto;
-    border: 3px solid;
-    border-color: black;
 }
 
 /* Off-Canvas Menu - The side navigation menu */
@@ -71,11 +60,12 @@ body {
     height: 100%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
+    z-index: 20000; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
     background-color: #111; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
+    overflow-x: hidden !important; /* Disable horizontal scroll */
+    overflow: hidden;
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
     padding-top: 60px; /* Place content 60px from the top */
 }
@@ -88,6 +78,12 @@ body {
     color: #007bff;
     display: block;
     transition: 0.3s;
+}
+
+.sidenav-inner {
+    /* min-width: 100%; */
+    width: 250px;
+    position: absolute;
 }
 
 /* When you mouse over the navigation links, change their color */
@@ -105,9 +101,8 @@ body {
 }
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-#main {
+#mainContent {
     transition: margin-left .5s;
-    padding: 16px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
@@ -116,26 +111,21 @@ body {
   .sidenav a {font-size: 18px;}
 }
 
+#hunter-name {
+    font-size: 22px;
+}
+
 #stickyNavTop a{
     left: 0;
-    color: #007bff;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-#stickyNavTop {
-    padding: 1%;
-}
-
-#stickyNavSpan {
-    color:#007bff; 
-    font-size:25px;
-    cursor:pointer;
-    
 }
 
 .rowItem {
     padding: 1%;
+}
+    
+#aboutUs {
+    font-size: 20px;
+    font-style: bold;
 }
     
 #search {
@@ -170,8 +160,6 @@ button {
     font-family: "Lato", sans-serif;
     font-size: 18px;
     margin-top: 12%;
-    color: #f1f1f1;
-    font-style: bold;
 }
 
 #mainContent {
@@ -188,32 +176,4 @@ button {
 
 .submitted {
     display: none;
-}
-
-#scav-list {
-    text-align: center;
-    width: 100%;
-}
-
-#boldLocation {
-    font-size: 18px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-#clueText {
-    padding-top: 1%;
-}
-
-#aboutUs {
-    font-size: 22px;
-    font-style: bolder;
-    font-family: "Lato", sans-serif;
-    padding: 0%;
-    margin: 0 auto;
-    -webkit-margin-collapse: collapse;
-}
-
-#footer {
-    padding: 2%;
-    text-justify: auto;
 }
