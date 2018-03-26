@@ -2,7 +2,7 @@ var Loader = {
     init: function(){
         $('#userImage').on('click', function(){
             Loader.makeLoader();
-        })
+        });
     },
     makeLoader: function(){
         var $loader = $('<div>');

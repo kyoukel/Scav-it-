@@ -45,6 +45,20 @@ var games = {
     }
 }
 
+function getQueryVariable(variable)
+{
+       var query = window.location.search.substring(1);
+       if(query === ""){
+           return false;
+       }
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
+
 
 $('#nextClue').on('click', function() {
     // submit the form and grab the base64 encoded image
@@ -72,8 +86,9 @@ database.ref("games").on("child_added", function(snapshot) {
         var count = games.getCount(games.state.places);
         // var index = 0;
         // passing in the #, in this case 5 so 
-        var place = games.getPlace(5);
-
+        var urlQuery = getQueryVariable('clueId')
+        var placeId = (urlQuery) ? urlQuery : "1";
+        var place = games.getPlace(placeId);
         console.log(games, place);
         MUC.playerCurrentPlace = place;
         MUC.makeScavClue(place);
@@ -203,7 +218,6 @@ var MUC = {
         console.log('create a coockie wih this! ' + document.cookie['player']);
         // somehow set a cookie to persist the current player
         document.cookie = `gameCounter=0`;
-        // $('#hunter-name').text( MUC.playerName );
         MUC.setCurrentHunter(playerName);
 
     },
