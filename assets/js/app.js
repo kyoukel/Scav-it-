@@ -108,6 +108,7 @@ var MUC = {
         4: 'bike'
     },
     playerId: '',
+    playerName: '',
     playerCurrentPlace: {},
     init: function() {
 
@@ -131,8 +132,6 @@ var MUC = {
             } else {
                 MUC.messenger('Sorry, but you\'re not close enough to the clue\'s location', 'bad');
             }
-
-
         });
 
         // make the data from the submitted image in the input
@@ -144,8 +143,13 @@ var MUC = {
     checkPlayerId: function() {
         if (document.cookie.split(';').indexOf('player=') >= 0 || document.cookie.split('=').indexOf('player') >= 0) {
             MUC.playerId = MUC.getPlayerCookie('player');
+            firebase.database().ref('players/' + MUC.playerId ).once('value').then(function(snapshot) {
+                MUC.playerName = 'Hunter: ' + (snapshot.val() && snapshot.val().name) || 'None';
+                $('#hunter-name').text( MUC.playerName );
+            });
+
             console.log('player exists');
-        } else {
+        }else{
             console.log("player does not exist");
             $('#splash').css('display', 'block');
 

@@ -84,6 +84,16 @@ body {
     /* min-width: 100%; */
     width: 250px;
     position: absolute;
+    padding: 12px;
+    color: white;
+}
+
+.sidenav-inner p {
+    color: white;
+}
+
+.sidenav-inner img {
+    padding: 6px;
 }
 
 /* When you mouse over the navigation links, change their color */
@@ -112,7 +122,10 @@ body {
 }
 
 #hunter-name {
-    font-size: 22px;
+    font-size: 20px;
+    color: white;
+    letter-spacing: 1px;
+    padding-top: 5px;
 }
 
 #stickyNavTop a{
