@@ -339,4 +339,12 @@ var MUC = {
 }
 
 
+function displayTime() {
+    var time = moment().format('ddd h:mm a');
+    $('#clock').html(time);
+    setTimeout(displayTime, 1000);
+}
+displayTime();
+
+
 MUC.init();

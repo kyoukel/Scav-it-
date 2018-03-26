@@ -18,33 +18,33 @@
 </head>
 
 <body>
-        <div id="splash" style="display: none">
-                <div class="container">
-                  <div class="row">
-                    <div class="card welcome-form">
-                      <div class="card-header bg-primary p-4">
-                          <h1 class="text-white">Hello, Your Name is:</h1>
-                      </div>
-                      <div class="card-body row">
+    <div id="splash" style="display: none">
+        <div class="container">
+            <div class="row">
+                <div class="card welcome-form">
+                    <div class="card-header bg-primary p-4">
+                        <h1 class="text-white">Hello, Your Name is:</h1>
+                    </div>
+                    <div class="card-body row">
                         <div class="col-7">
-                            <input id="yourName" placeholder="Your Hunter Handle" type="text" class="form-control" >
+                            <input id="yourName" placeholder="Your Hunter Handle" type="text" class="form-control">
                         </div>
                         <div class="col-5">
                             <button id="joinHunt" class="btn btn-primary">Join the Hunt!</button>
                         </div>
-                      </div>
                     </div>
-                  </div>
                 </div>
-              </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- Fixed navbar -->
     <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn text-primary" onclick="closeNav()">&times;</a>
-            <div class="sidenav-inner">
-                content for off canvas
-            </div>
+        <a href="javascript:void(0)" class="closebtn text-primary" onclick="closeNav()">&times;</a>
+        <div class="sidenav-inner">
+            content for off canvas
+        </div>
     </div>
 
     <!-- Use any element to open the sidenav-->
@@ -94,8 +94,8 @@
                                 <!--<span id="clue"><b id="boldLocation">Japanese Friendship Garden  </b><p id="clueText">"body of water with surface water flowing within the bed and banks of a channel"</p></span>-->
                             </div>
                             <div class="col-sm-12 col-md-2 right-widget text-center">
-                                <input type="hidden" id="userLat" >
-                                <input type="hidden" id="userLong" >
+                                <input type="hidden" id="userLat">
+                                <input type="hidden" id="userLong">
 
                                 <input type="file" name="userImage" id="userImage" accept="image/*" capture>
                                 <input type="hidden" id="base64">
@@ -108,14 +108,26 @@
             </div>
         </main>
 
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-1">
+                    <label class="btn btn-primary" id="nextClue"> Next Clue:</label>
+                </div>
+                <div class="col-sm-3">
+                </div>
 
-        <label class="btn btn-primary" id="nextClue"> Next Clue:</label>
-        <nav class="navbar fixed-bottom navbar-dark bg-dark" id="footer">
-            <a class="nav-link text-center" href="#" id="aboutUs">About Us</a>
-        </nav>
 
+            </div>
+        </div>
     </div>
 
+    <nav class="navbar fixed-bottom navbar-dark bg-dark" id="footer">
+        <a class="nav-link text-center" href="#" id="aboutUs">About Us</a>
+        <span id="clock" class="clock">loading ...</span>
+    </nav>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQwL81AM3LwGU05HGzI3hf_-lUJa4ed6k&libraries=geometry,places,maps"></script>
     <!-- Optional JavaScript -->
