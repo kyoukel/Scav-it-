@@ -18,7 +18,7 @@
 </head>
 
 <body>
-        <!-- <div id="splash" style="display: none">
+        <div id="splash" style="display: none">
                 <div class="container">
                   <div class="row">
                     <div class="card welcome-form">
@@ -36,28 +36,23 @@
                     </div>
                   </div>
                 </div>
-              </div> -->
+              </div>
 
 
     <!-- Fixed navbar -->
     <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn text-primary" onclick="closeNav()">&times;</a>
             <div class="sidenav-inner">
-                <p>Help Q/A</strong></p>
-                <p>Please Note: This game takes place in Balboa Park, San Diego within different exhibitions. You must pay admission to each exhibition to finish the game.</p>
-                <p>Start Game: You must click “Allow” on the location alert pop-up to start and join the game.</p>
-                <p>Refresh Location: Click “refresh location” to see your location map pin appear on the map. Note: Clicking refresh location again will show your new location on the map and will not effect your game status.</p>
+                <p><strong>Help Q/A</strong></p>
+                <!-- <p>Please Note: This game takes place in Balboa Park, San Diego within different exhibitions. You must pay admission to each exhibition to finish the game.</p> -->
+                <p>Please Note: This game takes place in Balboa Park!</p>
+                <p>Start Game: Click “Allow” on the location alert pop-up.</p>
+                <p>Refresh Location: Click "my location” to see your location map pin appear on the map. Note: Do this until you're within a pink circle!</p>
                 <p>Wrong Image: Press the “scav it!” button again to capture the new image. Continue with this step until you have a matching image.</p>
-                <p>Red Circles: The circles represent locations of the clues in the game.</p>
+                <p>Pink Circles: The circles represent locations of the clues in the game.</p>
                 <p>Clues: If you are unable to determine the answer from the clue – simply copy and paste the clue into “google” to see the answer’s definition.</p> 
-                <p>Refresh Browser: You will not lose your place in the game.</p>
-                <p>Error Message: “Sorry! Try to find the clue item again”: Press the “scav it!” button again to take a new photo. Photo clarity is important! You must be within the red circle of the clue's location for it to count and to move forward in the game.</p>
-
-                <p>About Us</p>
-                <p>UCSD Coding Bootcamp | Team MUC, Misunderstood Contenders</p>
-                <p>We wanted to make something fun, stretch our abilities, and that others will enjoy as well.</p> 
-                <p>We all agreed that a City Scavenger Hunt Game would be the best for our 1st Project.</p>
-                <p>Balboa Park is such an iconic tourist attraction for San Diego, so we said why not explore while you're paying to see and enjoy pieces of our history. </p>
+                <!-- <p>Error Message: “Sorry! Try to find the clue item again”: Press the “scav it!” button again to take a new photo. Photo clarity is important! You must be within the red circle of the clue's location for it to count and to move forward in the game.</p> -->
+                <a class="nav-link text-center" href="#" id="aboutUs">About Us</a>
             </div>
     </div>
 
@@ -66,11 +61,19 @@
     <div id="mainContent">
 
 
-        <nav class="navbar sticky-top navbar-dark bg-dark" id="stickyNavTop">
-            <span id="stickyNavSpan" onclick="openNav()" class="text-center text-primary">&#9776;</span>
-            <h2 id="hunter-name">Hunter Name</h2>
-            <h2 id="gameTitle">Game Title</h2>
-            <button onclick="getLocation()" class="btn btn-primary m-0">Refresh Location</button>
+        <nav class="navbar sticky-top navbar-dark bg-dark container" id="stickyNavTop">
+            <div class="row">
+                <div class="col-2">
+                        <span id="stickyNavSpan" onclick="openNav()" class="text-center text-primary">&#9776;</span>
+                </div>
+                <div class="col-4">
+                    <h2 id="hunter-name">Hunter Name</h2>
+                </div>
+                <div class="col-6">
+                    <button onclick="getLocation()" class="btn btn-primary m-0">My Location</button>
+                </div>
+            </div>
+            
         </nav>
 
         <div class="jumbotron">
@@ -124,9 +127,20 @@
         </main>
 
 
-        <label class="btn btn-primary" id="nextClue"> Next Clue:</label>
+        
         <nav class="navbar fixed-bottom navbar-dark bg-dark" id="footer">
-            <a class="nav-link text-center" href="#" id="aboutUs">About Us</a>
+            <div class="container">
+                <form action="#" method="GET">
+                    <div class="row form-group" >
+                        <div class="col-6 text-right">
+                            <input class="form-control clue-input" type="text" placeholder="clue id" name="clueId">
+                        </div>
+                        <div class="col-6 text-left">
+                            <button class="btn btn-primary" id="nextClue"> Next Clue</button>
+                        </div>
+                </form>
+                </div>
+            </div>
         </nav>
 
     </div>

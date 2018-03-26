@@ -5,7 +5,7 @@
 /* CUSTOM STYLES */
 body {
     position: relative;
-    height: 100vh;
+    /* height: 100vh; */
     font-family: "Lato", sans-serif;
 }
 
@@ -86,10 +86,20 @@ body {
     position: absolute;
     padding: 12px;
     color: white;
+    font-size: 12px;
+}
+
+.clue-input {
+    margin: 0;
+    display: block;
 }
 
 .sidenav-inner p {
     color: white;
+}
+
+#footer button {
+    margin: 0 !important;
 }
 
 .sidenav-inner img {
@@ -138,11 +148,20 @@ body {
     
 #aboutUs {
     font-size: 20px;
+    text-align: left;
     font-style: bold;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
     
 #search {
     margin-top: 5px;
+}
+
+.navbar.fixed-bottom .container, .navbar.fixed-bottom .row {
+    padding: 0;
+    margin: 0;
+    width: 100%;
 }
 
 input[type="file" ] {
