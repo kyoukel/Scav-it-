@@ -46,18 +46,26 @@ var games = {
 }
 
 
+var gameCounter = 1;
 $('#nextClue').on('click', function() {
-    // submit the form and grab the base64 encoded image
-
     database.ref("games").on("child_added", function(snapshot) {
         if (snapshot.val().name === "Balboa Park") {
             // log object to the console.
-            console.log(snapshot.val());
-
-            // for (var i = 0; i < games.getPlace(); i++)
+            // console.log(snapshot.val());
+            // places.forEach((place) => $('scav-clue').text("You need to find " + games.getPlace().clue + " At " + games.getPlace().name))
             var place = games.getPlace();
-            console.log(games.getPlace(0).clue);
-            $("#clue").html(games.getPlace(0).clue);
+            // MUC.playerCurrentPlace = place;
+            for (var index = 0; index < gameCounter;) {
+                if (index < 12) {
+                    $(".scav-clue").text("you need to find: " + games.getPlace(index).clue + " Near location: " + games.getPlace(index).name);
+                    index++;
+                } else {
+                    index === 0;
+                    $(".scav-clue").text("you need to find: " + games.getPlace(index).clue + " Near location: " + games.getPlace(index).name);
+                    index++;
+                }
+            }
+            gameCounter++;
         }
     });
 });
@@ -140,20 +148,20 @@ var MUC = {
             MUC.makeData();
         });
     },
-    setCurrentHunter: function(playerName){
+    setCurrentHunter: function(playerName) {
         MUC.playerName = 'Hunter: ' + playerName;
-        $('#hunter-name').text( MUC.playerName );
+        $('#hunter-name').text(MUC.playerName);
     },
     checkPlayerId: function() {
         if (document.cookie.split(';').indexOf('player=') >= 0 || document.cookie.split('=').indexOf('player') >= 0) {
             MUC.playerId = MUC.getPlayerCookie('player');
-            firebase.database().ref('players/' + MUC.playerId ).once('value').then(function(snapshot) {
+            firebase.database().ref('players/' + MUC.playerId).once('value').then(function(snapshot) {
                 var playerName = (snapshot.val() && snapshot.val().name) || 'None';
                 MUC.setCurrentHunter(playerName);
             });
 
             console.log('player exists');
-        }else{
+        } else {
             console.log("player does not exist");
             $('#splash').css('display', 'block');
 
@@ -321,7 +329,7 @@ var MUC = {
         var text = '<h3>' + mssg + '</h3>';
         var $div = $("<div>").attr(styling).html(text);
         $('#messenger-wrapper').html($div);
-        $('#messenger-wrapper').slideDown('fast', function(){
+        $('#messenger-wrapper').slideDown('fast', function() {
             // kill the messege in 4 sec
             setTimeout(function() {
                 $('#messenger-wrapper').slideUp('fast').html('');
