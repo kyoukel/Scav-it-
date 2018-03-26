@@ -106,7 +106,7 @@ function initMap(citymap) {
             lng: place.lng
         };
 
-        console.log(placeCenter);
+        // console.log(placeCenter);
 
         // placeCenter = {
         //     lat: 32.731978,
