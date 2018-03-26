@@ -217,7 +217,7 @@ var MUC = {
         document.cookie = `player=${MUC.playerId}`;
         console.log('create a coockie wih this! ' + document.cookie['player']);
         // somehow set a cookie to persist the current player
-        document.cookie = `gameCounter=0`;
+        // document.cookie = `gameCounter=0`;
         MUC.setCurrentHunter(playerName);
 
     },
