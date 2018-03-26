@@ -113,6 +113,7 @@ body {
 
 #hunter-name {
     font-size: 22px;
+    color: #f1f1f1;
 }
 
 #stickyNavTop a{
@@ -160,6 +161,7 @@ button {
     font-family: "Lato", sans-serif;
     font-size: 18px;
     margin-top: 12%;
+    color: #f1f1f1;
 }
 
 #mainContent {
@@ -176,4 +178,8 @@ button {
 
 .submitted {
     display: none;
+}
+
+#gameTitle {
+    color: #f1f1f1;
 }
