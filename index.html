@@ -21,15 +21,15 @@
         <div class="container">
           <div class="row">
             <div class="card welcome-form">
-              <div class="card-header bg-primary p-4">
-                  <h1 class="text-white">Hello, Your Name is:</h1>
+              <div class="card-header">
+                  <h1 id="helloText">Hello, Your Name is:</h1>
               </div>
               <div class="card-body row">
-                <div class="col-7">
+                <div class="col-md col-sm">
                     <input id="yourName" type="text" class="form-control" >
                 </div>
-                <div class="col-5">
-                    <button id="joinHunt" class="btn btn-primary">Join the Hunt!</button>
+                <div class="col-md col-sm">
+                    <button id="joinHunt" class="btn">Join the Hunt!</button>
                 </div>
               </div>
             </div>
@@ -49,15 +49,17 @@
 
 
         <nav class="navbar sticky-top navbar-dark bg-dark" id="stickyNavTop">
-            <span style="color:#007bff; font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+            <span id="stickyNavSpan" onclick="openNav()" class="text-center">&#9776;Insert Player Name</span>
+
+            <span style="color:#007bff; font-size:30px;cursor:pointer" onclick="openNav()">&times;</span>
             <button onclick="getLocation()" class="btn btn-primary m-0">Refresh Location</button>
         </nav>
 
         <div class="jumbotron">
             <!-- MAP -->
-            <div class="container w-100">
+            <div class="container">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-md-6">
                         <div id="map"></div>
                     </div>
                 </div>
@@ -75,23 +77,18 @@
         <!-- DON'T CREATE REPEATING ELEMENTS THAT WILL BE CREATED DYNAMICALLY BY SCAV LIST -->
         <main role="main" class="container">
             <div class="rowItem">
-                <ul class="list-group scav-list w-100 text-center">
+                <ul class="list-group scav-list" id="scav-list">
                     <li id="place0" class="list-group-item scav-item bg-dark">
                         <form class="row scav-item-inner">
-                            <div class="col-md-2 left-widget">
+                            <div class="col-md col-lg-2 left-widget">
                                 <i class="fa fa-square unsubmitted"></i><span class="unsubmitted"> Unsubmitted</span>
-                                <i class="fa fa-check-square submitted"></i><span class="submitted"> Unsubmitted</span>
+                                <i class="fa fa-check-square submitted"></i><span class="submitted"> Submitted</span>
                             </div>
-                            <div class="col-sm-10 col-md-8 scav-clue">
-                                
-                                <!-- <span style="color: #f1f1f1; font-size: 20px;"></span>Here is information about the item</span> -->
-
+                            <div class="col-md col-lg-8 scav-clue">
+                                <!-- Here is information about the item-->
+                                <!--Name of Place/Location-->
                                 <span style="color: #f1f1f1" id="clue">A Clue for something to find...</span>
-
-
-                                <!-- <input type="submit" value="submit" id="submit"> 
-                    <input type="reset" id="reset"> -->
-
+                                <!--<span id="clue"><b id="boldLocation">Japanese Friendship Garden  </b><p id="clueText">"body of water with surface water flowing within the bed and banks of a channel"</p></span>-->
                             </div>
 
                             <div class="col-sm-12 col-md-2 right-widget">
@@ -108,10 +105,10 @@
             </div>
         </main>
 
-        <nav class="navbar sticky-top navbar-dark bg-dark" id="stickyNavTop">
-            <span style="color:#007bff; font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-
+        <nav class="navbar fixed-bottom navbar-dark bg-dark" id="footer">
+            <a class="nav-link text-center" href="#" id="aboutUs">About Us</a>
         </nav>
+        
     </div>
 
 
