@@ -173,6 +173,7 @@ button {
     font-family: "Lato", sans-serif;
     font-size: 18px;
     margin-top: 12%;
+    color: #f1f1f1;
 }
 
 #mainContent {
@@ -189,4 +190,8 @@ button {
 
 .submitted {
     display: none;
+}
+
+#gameTitle {
+    color: #f1f1f1;
 }

@@ -18,7 +18,7 @@
 </head>
 
 <body>
-        <div id="splash" style="display: none">
+        <!-- <div id="splash" style="display: none">
                 <div class="container">
                   <div class="row">
                     <div class="card welcome-form">
@@ -36,14 +36,28 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
 
     <!-- Fixed navbar -->
     <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn text-primary" onclick="closeNav()">&times;</a>
             <div class="sidenav-inner">
-                content for off canvas
+                <p>Help Q/A</strong></p>
+                <p>Please Note: This game takes place in Balboa Park, San Diego within different exhibitions. You must pay admission to each exhibition to finish the game.</p>
+                <p>Start Game: You must click “Allow” on the location alert pop-up to start and join the game.</p>
+                <p>Refresh Location: Click “refresh location” to see your location map pin appear on the map. Note: Clicking refresh location again will show your new location on the map and will not effect your game status.</p>
+                <p>Wrong Image: Press the “scav it!” button again to capture the new image. Continue with this step until you have a matching image.</p>
+                <p>Red Circles: The circles represent locations of the clues in the game.</p>
+                <p>Clues: If you are unable to determine the answer from the clue – simply copy and paste the clue into “google” to see the answer’s definition.</p> 
+                <p>Refresh Browser: You will not lose your place in the game.</p>
+                <p>Error Message: “Sorry! Try to find the clue item again”: Press the “scav it!” button again to take a new photo. Photo clarity is important! You must be within the red circle of the clue's location for it to count and to move forward in the game.</p>
+
+                <p>About Us</p>
+                <p>UCSD Coding Bootcamp | Team MUC, Misunderstood Contenders</p>
+                <p>We wanted to make something fun, stretch our abilities, and that others will enjoy as well.</p> 
+                <p>We all agreed that a City Scavenger Hunt Game would be the best for our 1st Project.</p>
+                <p>Balboa Park is such an iconic tourist attraction for San Diego, so we said why not explore while you're paying to see and enjoy pieces of our history. </p>
             </div>
     </div>
 
@@ -55,6 +69,7 @@
         <nav class="navbar sticky-top navbar-dark bg-dark" id="stickyNavTop">
             <span id="stickyNavSpan" onclick="openNav()" class="text-center text-primary">&#9776;</span>
             <h2 id="hunter-name">Hunter Name</h2>
+            <h2 id="gameTitle">Game Title</h2>
             <button onclick="getLocation()" class="btn btn-primary m-0">Refresh Location</button>
         </nav>
 
@@ -90,7 +105,7 @@
                             <div class="col-sm-12 col-md-10 scav-clue text-center pb-2">
                                 <!-- Here is information about the item-->
                                 <!--Name of Place/Location-->
-                                <span style="color: #f1f1f1" id="clue">A Clue for something to find...</span>
+                                <span id="clue">A Clue for something to find...</span>
                                 <!--<span id="clue"><b id="boldLocation">Japanese Friendship Garden  </b><p id="clueText">"body of water with surface water flowing within the bed and banks of a channel"</p></span>-->
                             </div>
                             <div class="col-sm-12 col-md-2 right-widget text-center">
