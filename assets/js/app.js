@@ -1,7 +1,7 @@
 /* Set the width of the offcanvas-side-navigation to 250px and the left margin of the page content to 250px */
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("mainContent").style.marginLeft = "250px";
+    // document.getElementById("mainContent").style.marginLeft = "250px";
     // and add a black background color to body */
     document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
 }
@@ -9,7 +9,7 @@ function openNav() {
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("mainContent").style.marginLeft = "0";
+    // document.getElementById("mainContent").style.marginLeft = "0";
     // and the background color of body to white */
     document.body.style.backgroundColor = "white";
 }
@@ -311,12 +311,12 @@ var MUC = {
         }
         var text = '<h3>' + mssg + '</h3>';
         var $div = $("<div>").attr(styling).html(text);
-        $('#messenger-wrapper').append($div);
-        $('#messenger-wrapper').slideDown('fast', function() {
+        $('#messenger-wrapper').html($div);
+        $('#messenger-wrapper').slideDown('fast', function(){
             // kill the messege in 4 sec
             setTimeout(function() {
                 $('#messenger-wrapper').slideUp('fast').html('');
-            }, 4000);
+            }, 8000);
         });
     }
 }

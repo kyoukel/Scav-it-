@@ -1,0 +1,13 @@
+.puzzle-box {
+    width: 80px;
+    height: 80px;
+    background-position: center;
+    background-size: 200%;
+    position: relative;
+    margin: 0 auto;
+    /* opacity: 0; */
+}
+
+#messenger-wrapper {
+    transition: opacity 1s;
+}
