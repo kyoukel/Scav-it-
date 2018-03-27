@@ -224,16 +224,18 @@ var rad = function(x) {
 //     return d; // returns the distance in meter
 // };
 
-var getDistance = function(pLat1, pLng1, pLat2, pLng2){
-    var R = 6378137; // Earth’s mean radius in meter
-    var dLat = rad(pLat2 - pLat1);
-    var dLong = rad(pLng2 - pLng2);
-    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(rad(pLat1)) * Math.cos(rad(pLat2)) *
-        Math.sin(dLong / 2) * Math.sin(dLong / 2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = R * c;
-    return d; // returns the distance in meter
+function distance(lat1, lon1, lat2, lon2, unit) {
+	var radlat1 = Math.PI * lat1/180
+	var radlat2 = Math.PI * lat2/180
+	var theta = lon1-lon2
+	var radtheta = Math.PI * theta/180
+	var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+	dist = Math.acos(dist)
+	dist = dist * 180/Math.PI
+	dist = dist * 60 * 1.1515
+	if (unit=="K") { dist = (dist * 1.609344)/10 }
+	if (unit=="N") { dist = dist * 0.8684 }
+	return dist
 }
 
 //
