@@ -309,7 +309,7 @@ var MUC = {
 
 
         // use distance() from locations.js to determine success?
-        if ( 45 > getDistance(userLat, userLong, poiLat, poiLong, m) ) {
+        if ( 45 > getDistance(userLat, userLong, poiLat, poiLong, 'K') ) {
             // they can scavenge the item
             console.log('in bounds! read to scav!');
             return true;
